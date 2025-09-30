@@ -1,4 +1,5 @@
 import { db } from '../services/firebase';
+import { doc, setDoc } from "firebase/firestore";
 
 export const createUser = async (userId, data) => {
   try {
