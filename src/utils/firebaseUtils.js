@@ -25,3 +25,11 @@ export const createUser = async (userId, data) => {
     console.error("error with user creation", error);
   }
 };
+
+export const createLessonContent = async (courseId, data) => {
+
+}
+
+export const createChallengeContent = async (courseId, data) => {
+  
+}
