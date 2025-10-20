@@ -11,10 +11,7 @@ const ChatAI = () => {
       route: "general",
     },
     style: {
-      primaryColor: "#854fff",
-      secondaryColor: "#6b3fd4",
       backgroundColor: "#ffffff",
-      fontColor: "#333333",
     },
   };
 
@@ -66,9 +63,9 @@ const ChatAI = () => {
   };
 
   return (
-    <div className="fixed bottom-5 right-5 font-[Geist Sans]">
+    <div className="fixed bottom-5 right-5 font-[--color-text]">
       <div className="flex flex-col w-[350px] h-[500px] bg-white rounded-xl shadow-xl overflow-hidden z-50 animate-fadeIn">
-        <div className="bg-[#854fff] text-white px-5 py-4 flex items-center text-lg font-semibold">
+        <div className="bg-[var(--color-primary)]  text-white px-5 py-4 flex items-center text-lg font-semibold">
           <span>Chat</span>
         </div>
 
@@ -82,7 +79,7 @@ const ChatAI = () => {
               className={`p-3 rounded-lg text-sm max-w-[80%] break-words ${
                 msg.from === "user"
                   ? "bg-gray-100 text-gray-800 self-end ml-auto"
-                  : "bg-[#854fff] text-white self-start"
+                  : "bg-[var(--color-primary)]  text-white self-start"
               }`}
             >
               {msg.text}
@@ -101,7 +98,7 @@ const ChatAI = () => {
           />
           <button
             onClick={sendMessage}
-            className="bg-[#854fff] text-white px-4 py-2 rounded-lg hover:bg-[#6b3fd4] transition-all duration-200"
+            className="bg-[var(--color-primary)]  text-white px-4 py-2 rounded-lg hover:bg-[#6b3fd4] transition-all duration-200"
           >
             Send
           </button>
