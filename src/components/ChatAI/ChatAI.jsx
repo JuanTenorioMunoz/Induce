@@ -1,7 +1,19 @@
 import { useState, useEffect, useRef } from "react";
+import { Send } from "lucide-react"; 
 
 const ChatAI = () => {
-  const [messages, setMessages] = useState([]);
+  const [messages, setMessages] = useState([
+    {
+      from: "bot",
+      text: "¡Hola! Soy DUCI, el asistente virtual de Induce. ¿En qué puedo ayudarte hoy?",
+      options: [
+        "¿Cómo empezar?",
+        "¿Dónde veo las vacantes?",
+        "Contactar asesor",
+        "¿Cómo postularme a una vacante?",
+      ],
+    },
+  ]);
   const [input, setInput] = useState("");
   const chatBodyRef = useRef(null);
 
@@ -9,9 +21,6 @@ const ChatAI = () => {
     webhook: {
       url: "http://localhost:3005/webhook/f4c08642-2017-4d9e-b8b5-5939faf9183c/chat",
       route: "general",
-    },
-    style: {
-      backgroundColor: "#ffffff",
     },
   };
 
@@ -30,10 +39,9 @@ const ChatAI = () => {
     return chatId;
   };
 
-  const sendMessage = async () => {
-    if (!input.trim()) return;
-
-    const userMessage = { from: "user", text: input };
+  const sendMessage = async (msgText) => {
+    if (!msgText.trim()) return;
+    const userMessage = { from: "user", text: msgText };
     setMessages((prev) => [...prev, userMessage]);
     setInput("");
 
@@ -45,62 +53,86 @@ const ChatAI = () => {
         body: JSON.stringify({
           chatId,
           id: 123,
-          message: input,
+          message: msgText,
           route: ChatWidgetConfig.webhook.route,
         }),
       });
 
       const data = await res.json();
-      const botText = data.output || "Sorry, I couldn't understand that.";
+      const botText = data.output || "No entendí eso, ¿puedes repetirlo?";
       setMessages((prev) => [...prev, { from: "bot", text: botText }]);
     } catch (err) {
       console.error("Error:", err);
       setMessages((prev) => [
         ...prev,
-        { from: "bot", text: "⚠️ Network error. Please try again later." },
+        { from: "bot", text: "⚠️ Error de conexión. Intenta de nuevo más tarde." },
       ]);
     }
   };
 
+  const handleOptionClick = (option) => {
+    sendMessage(option);
+  };
+
   return (
-    <div className="fixed bottom-5 right-5 font-primary text-[var(--color-text)]">
-      <div className="flex flex-col w-[550px] h-[500px] bg-white rounded-xl shadow-xl overflow-hidden z-50 animate-fadeIn">
-        <div className="bg-[var(--color-primary)] text-white px-5 py-4 flex items-center text-lg font-semibold">
-          <span>Nombre del chat</span>
+    <div className="fixed bottom-5 right-5 font-primary text-gray-900">
+      <div className="flex flex-col w-[420px] h-[550px] bg-white rounded-2xl shadow-2xl overflow-hidden border border-gray-200">
+        <div className="bg-[#6B4EFF] text-white px-5 py-4 flex items-center gap-2">
+          <span className="text-base font-semibold">DUCI - Asistente Virtual</span>
         </div>
 
         <div
           ref={chatBodyRef}
-          className="flex-1 px-5 py-4 overflow-y-auto space-y-3"
+          className="flex-1 px-4 py-4 overflow-y-auto flex flex-col gap-3 scroll-smooth"
         >
           {messages.map((msg, i) => (
-            <p
+            <div
               key={i}
-              className={`p-3 rounded-lg text-sm max-w-[80%] break-words ${
-                msg.from === "user"
-                  ? "bg-gray-100 text-gray-800 self-end ml-auto"
-                  : "bg-[var(--color-primary)] text-white self-start"
+              className={`flex flex-col ${
+                msg.from === "user" ? "items-end" : "items-start"
               }`}
             >
-              <span style={{ whiteSpace: "pre-line" }}>{msg.text}</span>
-            </p>
+              <div
+                className={`p-3 rounded-2xl text-sm leading-relaxed max-w-[80%] ${
+                  msg.from === "user"
+                    ? "bg-gray-100 text-gray-800"
+                    : "bg-[#F4F1FF] text-gray-900"
+                }`}
+              >
+                {msg.text}
+              </div>
+
+              {msg.options && (
+                <div className="flex flex-wrap gap-2 mt-2">
+                  {msg.options.map((opt, j) => (
+                    <button
+                      key={j}
+                      onClick={() => handleOptionClick(opt)}
+                      className="px-3 py-1 text-xs rounded-full border border-[#6B4EFF] text-[#6B4EFF] hover:bg-[#6B4EFF] hover:text-white transition-all"
+                    >
+                      {opt}
+                    </button>
+                  ))}
+                </div>
+              )}
+            </div>
           ))}
         </div>
 
-        <div className="border-t border-gray-200 p-3 flex gap-2">
+        <div className="border-t border-gray-200 p-3 flex gap-2 items-center">
           <input
             type="text"
             value={input}
             onChange={(e) => setInput(e.target.value)}
-            onKeyDown={(e) => e.key === "Enter" && sendMessage()}
-            placeholder="Type your message here..."
-            className="flex-1 border border-gray-300 rounded-lg px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-[#854fff]"
+            onKeyDown={(e) => e.key === "Enter" && sendMessage(input)}
+            placeholder="Escribe tu mensaje..."
+            className="flex-1 border border-gray-300 rounded-full px-4 py-2 text-sm outline-none focus:ring-2 focus:ring-[#6B4EFF]"
           />
           <button
-            onClick={sendMessage}
-            className="bg-[var(--color-primary)] text-white px-4 py-2 rounded-lg hover:bg-[#6b3fd4] transition-all duration-200"
+            onClick={() => sendMessage(input)}
+            className="bg-[#6B4EFF] text-white p-2 rounded-full hover:bg-[#583BDB] transition-all"
           >
-            Send
+            <Send size={18} />
           </button>
         </div>
       </div>
