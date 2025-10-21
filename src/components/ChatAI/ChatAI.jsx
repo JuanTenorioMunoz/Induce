@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import { Send } from "lucide-react"; 
+import { Send } from "lucide-react";
 
 const ChatAI = () => {
   const [messages, setMessages] = useState([
@@ -7,10 +7,9 @@ const ChatAI = () => {
       from: "bot",
       text: "¡Hola! Soy DUCI, el asistente virtual de Induce. ¿En qué puedo ayudarte hoy?",
       options: [
-        "¿Cómo empezar?",
-        "¿Dónde veo las vacantes?",
-        "Contactar asesor",
-        "¿Cómo postularme a una vacante?",
+        "Ver vacantes recomendadas",
+        "Información de mi perfil profesional",
+        "Ver oportunidades en modalidad remota",
       ],
     },
   ]);
@@ -65,7 +64,10 @@ const ChatAI = () => {
       console.error("Error:", err);
       setMessages((prev) => [
         ...prev,
-        { from: "bot", text: "⚠️ Error de conexión. Intenta de nuevo más tarde." },
+        {
+          from: "bot",
+          text: "⚠️ Error de conexión. Intenta de nuevo más tarde.",
+        },
       ]);
     }
   };
@@ -75,12 +77,14 @@ const ChatAI = () => {
   };
 
   return (
-    <div className="fixed bottom-5 right-5 font-primary text-gray-900">
-      <div className="flex flex-col w-[420px] h-[550px] bg-white rounded-2xl shadow-2xl overflow-hidden border border-gray-200">
-        <div className="bg-[#6B4EFF] text-white px-5 py-4 flex items-center gap-2">
-          <span className="text-base font-semibold">DUCI - Asistente Virtual</span>
-        </div>
+    <div className="fixed inset-0 flex flex-col items-center justify-center bg-[var(--color-background)] font-primary text-[var(--color-text)]">
+      
+      <div className="mb-4 text-[var(--color-primary)] font-outfit text-lg">
+        Demo DUCI - Asistente Virtual
+      </div>
 
+      <div className="flex flex-col w-[520px] h-[750px] bg-white rounded-xl shadow-[0_2px_10px_rgba(0,0,0,0.08)] overflow-hidden border border-[var(--color-neutral)] font-primary">
+        
         <div
           ref={chatBodyRef}
           className="flex-1 px-4 py-4 overflow-y-auto flex flex-col gap-3 scroll-smooth"
@@ -92,15 +96,30 @@ const ChatAI = () => {
                 msg.from === "user" ? "items-end" : "items-start"
               }`}
             >
-              <div
-                className={`p-3 rounded-2xl text-sm leading-relaxed max-w-[80%] ${
-                  msg.from === "user"
-                    ? "bg-gray-100 text-gray-800"
-                    : "bg-[#F4F1FF] text-gray-900"
-                }`}
-              >
-                {msg.text}
+              {msg.from === "bot" ? (
+                msg.text
+                  .split(/\n(?=\*\*)/)
+                  .map((section, k) => (
+                    <div
+                      key={k}
+                      className="p-3 rounded-2xl text-sm leading-relaxed max-w-[80%] bg-[var(--color-neutral)] text-[var(--color-text)] mb-2"
+                    >
+                      <div
+                        dangerouslySetInnerHTML={{
+                          __html: section
+                            .replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>")
+                            .replace(/\*(.*?)\*/g, "<em>$1</em>")
+                            .replace(/\n/g, "<br/>"),
+                        }}
+                      />
+                    </div>
+                  ))
+              ) : (
+                <div className="p-3 rounded-2xl text-sm leading-relaxed max-w-[80%] bg-[var(--color-secondary)] text-[var(--color-text)]">
+                  {msg.text}
               </div>
+
+              )}
 
               {msg.options && (
                 <div className="flex flex-wrap gap-2 mt-2">
@@ -108,7 +127,7 @@ const ChatAI = () => {
                     <button
                       key={j}
                       onClick={() => handleOptionClick(opt)}
-                      className="px-3 py-1 text-xs rounded-full border border-[#6B4EFF] text-[#6B4EFF] hover:bg-[#6B4EFF] hover:text-white transition-all"
+                      className="px-3 py-1 text-xs rounded-full border border-[var(--color-primary)] text-[var(--color-primary)] hover:bg-[var(--color-primary)] hover:text-white transition-all"
                     >
                       {opt}
                     </button>
@@ -119,18 +138,18 @@ const ChatAI = () => {
           ))}
         </div>
 
-        <div className="border-t border-gray-200 p-3 flex gap-2 items-center">
+        <div className="border-t border-[var(--color-neutral)] p-3 flex gap-2 items-center">
           <input
             type="text"
             value={input}
             onChange={(e) => setInput(e.target.value)}
             onKeyDown={(e) => e.key === "Enter" && sendMessage(input)}
             placeholder="Escribe tu mensaje..."
-            className="flex-1 border border-gray-300 rounded-full px-4 py-2 text-sm outline-none focus:ring-2 focus:ring-[#6B4EFF]"
+            className="flex-1 border border-[var(--color-neutral)] rounded-full px-4 py-2 text-sm outline-none focus:ring-2 focus:ring-[var(--color-primary)] text-[var(--color-text)] placeholder-[var(--color-ligth-text)]"
           />
           <button
             onClick={() => sendMessage(input)}
-            className="bg-[#6B4EFF] text-white p-2 rounded-full hover:bg-[#583BDB] transition-all"
+            className="bg-[var(--color-primary)] text-white p-2 rounded-full hover:bg-[var(--color-secondary)] hover:text-[var(--color-text)] transition-all"
           >
             <Send size={18} />
           </button>
