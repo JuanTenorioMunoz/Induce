@@ -64,7 +64,7 @@ const ChatAI = () => {
 
   return (
     <div className="fixed bottom-5 right-5 font-primary text-[var(--color-text)]">
-      <div className="flex flex-col w-[350px] h-[500px] bg-white rounded-xl shadow-xl overflow-hidden z-50 animate-fadeIn">
+      <div className="flex flex-col w-[550px] h-[500px] bg-white rounded-xl shadow-xl overflow-hidden z-50 animate-fadeIn">
         <div className="bg-[var(--color-primary)] text-white px-5 py-4 flex items-center text-lg font-semibold">
           <span>Nombre del chat</span>
         </div>
@@ -82,7 +82,7 @@ const ChatAI = () => {
                   : "bg-[var(--color-primary)] text-white self-start"
               }`}
             >
-              {msg.text}
+              <span style={{ whiteSpace: "pre-line" }}>{msg.text}</span>
             </p>
           ))}
         </div>
