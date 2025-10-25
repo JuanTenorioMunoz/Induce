@@ -1,16 +1,50 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Tema personalizado con variables CSS */
 :root {
+  /* Colores del branding */
+  --color-violet_blue: #353CA4;
+  --color-chartreuse: #D9F103;
+  --color-dark_sky_blue: #88bbd8;
+  --color-white: #EBF2FF;
+  --color-alice_blue: #F9FAFB;
+  
+  /* Colores de texto */
+  --color-fondos_oscuros: #FCFCFC;
+  --color-elementos_oscuros: #F2F2F2;
+  --color-texto_deshabilitado: #9B9C9F;
+  --color-texto_secundario: #494D58;
+  --color-texto_principal: #252B38;
+  --color-texto-titulos_y_texto_destacado: #080D17; 
+  
+  /* Colores de estado provisionales*/
+  --color-success: #22c55e;
+  --color-warning: #f59e0b;
+  --color-error: #ef4444;
+  
+  /* Colores de fondo */
+  --color-background-alice_blue: #F9FAFB;
+  --color-background-gray_white_bg: #2E2E31;
+  --color-background-black: #F3F4F6;
+}
+
+/* Modo oscuro */
+[data-theme="dark"] {
+  --color-background: #0f172a;
+  --color-background-dark: #1e293b;
+  --color-text: #f1f5f9;
+  --color-text-light: #94a3b8;
+}
+
+/* Estilos base */
+body {
+  background-color: var(--color-background-alice_blue);
+  color: var(--color-texto_principal);
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  margin: 0;
+  padding: 0;
 }
 
 a {
