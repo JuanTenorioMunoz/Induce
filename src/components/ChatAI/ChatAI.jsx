@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { Send } from "lucide-react";
+import ChatBubble from "./ChatBubble";
 
 const ChatAI = () => {
   const [messages, setMessages] = useState([
@@ -78,63 +79,17 @@ const ChatAI = () => {
 
   return (
     <div className="fixed inset-0 flex flex-col items-center justify-center bg-[var(--color-background)] font-primary text-[var(--color-text)]">
-      
       <div className="mb-4 text-[var(--color-primary)] font-outfit text-lg">
         Demo DUCI - Asistente Virtual
       </div>
 
       <div className="flex flex-col w-[520px] h-[750px] bg-white rounded-xl shadow-[0_2px_10px_rgba(0,0,0,0.08)] overflow-hidden border border-[var(--color-neutral)] font-primary">
-        
         <div
           ref={chatBodyRef}
           className="flex-1 px-4 py-4 overflow-y-auto flex flex-col gap-3 scroll-smooth"
         >
           {messages.map((msg, i) => (
-            <div
-              key={i}
-              className={`flex flex-col ${
-                msg.from === "user" ? "items-end" : "items-start"
-              }`}
-            >
-              {msg.from === "bot" ? (
-                msg.text
-                  .split(/\n(?=\*\*)/)
-                  .map((section, k) => (
-                    <div
-                      key={k}
-                      className="p-3 rounded-2xl text-sm leading-relaxed max-w-[80%] bg-[var(--color-neutral)] text-[var(--color-text)] mb-2"
-                    >
-                      <div
-                        dangerouslySetInnerHTML={{
-                          __html: section
-                            .replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>")
-                            .replace(/\*(.*?)\*/g, "<em>$1</em>")
-                            .replace(/\n/g, "<br/>"),
-                        }}
-                      />
-                    </div>
-                  ))
-              ) : (
-                <div className="p-3 rounded-2xl text-sm leading-relaxed max-w-[80%] bg-[var(--color-secondary)] text-[var(--color-text)]">
-                  {msg.text}
-              </div>
-
-              )}
-
-              {msg.options && (
-                <div className="flex flex-wrap gap-2 mt-2">
-                  {msg.options.map((opt, j) => (
-                    <button
-                      key={j}
-                      onClick={() => handleOptionClick(opt)}
-                      className="px-3 py-1 text-xs rounded-full border border-[var(--color-primary)] text-[var(--color-primary)] hover:bg-[var(--color-primary)] hover:text-white transition-all"
-                    >
-                      {opt}
-                    </button>
-                  ))}
-                </div>
-              )}
-            </div>
+            <ChatBubble key={i} msg={msg} onOptionClick={handleOptionClick} />
           ))}
         </div>
 
