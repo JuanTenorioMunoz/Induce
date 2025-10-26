@@ -1,6 +1,8 @@
+// ChatAI.jsx
 import { useState, useEffect, useRef } from "react";
 import { Send } from "lucide-react";
 import ChatBubble from "./ChatBubble";
+import ChatOption from "./ChatOption";
 
 const ChatAI = () => {
   const [messages, setMessages] = useState([
@@ -77,6 +79,8 @@ const ChatAI = () => {
     sendMessage(option);
   };
 
+  const lastMsg = messages[messages.length - 1];
+
   return (
     <div className="fixed inset-0 flex flex-col items-center justify-center bg-[var(--color-background)] font-primary text-[var(--color-text)]">
       <div className="mb-4 text-[var(--color-primary)] font-outfit text-lg">
@@ -89,8 +93,16 @@ const ChatAI = () => {
           className="flex-1 px-4 py-4 overflow-y-auto flex flex-col gap-3 scroll-smooth"
         >
           {messages.map((msg, i) => (
-            <ChatBubble key={i} msg={msg} onOptionClick={handleOptionClick} />
+            <ChatBubble key={i} msg={msg} />
           ))}
+
+          {lastMsg.options && (
+            <div className="flex flex-wrap gap-2 mt-2 items-start">
+              {lastMsg.options.map((opt, i) => (
+                <ChatOption key={i} label={opt} onClick={() => handleOptionClick(opt)} />
+              ))}
+            </div>
+          )}
         </div>
 
         <div className="border-t border-[var(--color-neutral)] p-3 flex gap-2 items-center">
