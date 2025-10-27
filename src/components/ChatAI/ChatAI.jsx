@@ -69,7 +69,7 @@ const ChatAI = () => {
         ...prev,
         {
           from: "bot",
-          text: "⚠️ Error de conexión. Intenta de nuevo más tarde.",
+          text: "Error de conexión. Intenta de nuevo más tarde.",
         },
       ]);
     }
