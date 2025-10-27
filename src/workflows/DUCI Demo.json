@@ -1,0 +1,223 @@
+{
+  "name": "Ai Helper",
+  "nodes": [
+    {
+      "parameters": {
+        "public": true,
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "typeVersion": 1.3,
+      "position": [
+        1344,
+        416
+      ],
+      "id": "e4f29b64-ae70-485e-9389-1dece18756c7",
+      "name": "When chat message received",
+      "webhookId": "f4c08642-2017-4d9e-b8b5-5939faf9183c"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        1408,
+        624
+      ],
+      "id": "8efa78d4-bb77-456a-bf6a-c0d6ed9d54b4",
+      "name": "Google Gemini Chat Model",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "FdJrlXPTfLIbSmse",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $json.chatInput }}{{ $json.message }}",
+        "options": {
+          "systemMessage": "Propósito:\nMantener conversaciones naturales y útiles con el usuario, utilizando la información ya disponible en la base de datos de Supabase (perfil del usuario, cursos, y vacantes activas). Utiliza el nombre del usuario para referirte a el.\nNunca menciones bases de datos, procesos internos ni el nombre “Supabase”.\n\nInstrucciones:\n- Cada mensaje contiene un id. Este id indica el id de usuario que se encuentra en la tabla users en supabase. Siempre lo tienes que usar para obtener la información del usuario. Ya sabes lo que tienes que saber del usuario gracias a la información vinculada a su id.\n- Ya cuentas con acceso interno al perfil del usuario (tabla `users`) y a las listas de cursos y vacantes (tabla `courses`), las cuales tiene toda la información de start_date, end_date, salario, modalidad, tipo de contrato, compañia, habilidades y demas. Recuerda siempre consultar esa info, nunca digas que no sabes, primero consulta. \n- Usa esa información para ofrecer respuestas personalizadas sin pedir datos que ya existen.\n- Si el perfil del usuario contiene su área profesional, intereses o habilidades, usa esos datos directamente para recomendar cursos u oportunidades laborales que se ajusten a él.\n- Muestra únicamente opciones que estén abiertas o activas.\n- Cuando muestres opcioens de vacantes, es importante que resaltes la ubicación, modalidad, empresa y salario\n- Si faltan datos clave del perfil (por ejemplo, área de especialización o nivel de experiencia), haz UNA sola pregunta breve y contextual para obtenerlos, luego procede con recomendaciones.\n- Cuando el usuario pida “opciones”, “oportunidades laborales” o “cursos”, responde directamente con los resultados más relevantes.\n- Presenta las recomendaciones de forma natural y profesional, sin lenguaje técnico ni referencias a sistemas.\n- Nunca menciones que estás “buscando”, “consultando” o “recuperando información”.\n\nFormato recomendado de respuesta:\n1. **[Título de la oportunidad o curso]** — breve descripción del enfoque o beneficio principal.\n2. **[Título 2]** — breve descripción.\n3. **[Título 3]** — breve descripción.\nTermina con una pregunta de seguimiento natural, por ejemplo:\n“¿Quieres que te muestre más opciones similares?” o “¿Deseas que filtre por modalidad online?”\n\nTono:\n- Profesional, cercano y positivo.\n- Evita repeticiones y respuestas genéricas.\n- Usa el contexto del usuario para sonar como si ya lo conocieras.\n\nEjemplo de buena respuesta:\nUsuario: “Soy especialista en marketing digital”\nRespuesta:\n“Perfecto. Con base en tu perfil, hay algunas opciones que podrían interesarte:\n1. **Estratega de Campañas Digitales** — Vacante activa en empresa de tecnología.\n2. **Curso de Analítica Web Avanzada** — Ideal para optimizar campañas de rendimiento.\n3. **Gestión de CRM y Automatización** — Programa enfocado en automatizar procesos de marketing.\n¿Te gustaría que te muestre más oportunidades en modalidad remota?”\n\nEjemplo de mala respuesta:\n“He consultado la base de datos para encontrar tus cursos.” \n(Nunca digas esto)\n"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 2.2,
+      "position": [
+        1680,
+        416
+      ],
+      "id": "605f4a9f-9441-4300-8bb6-50ae08393bc6",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "sessionIdType": "customKey",
+        "sessionKey": "=={{ $json.id }}",
+        "contextWindowLength": 50
+      },
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.3,
+      "position": [
+        1648,
+        624
+      ],
+      "id": "fac901b2-7b60-4679-a30a-67838d9b4d0b",
+      "name": "Simple Memory1"
+    },
+    {
+      "parameters": {
+        "operation": "getAll",
+        "tableId": "users",
+        "filterType": "none"
+      },
+      "type": "n8n-nodes-base.supabaseTool",
+      "typeVersion": 1,
+      "position": [
+        2080,
+        672
+      ],
+      "id": "e31c3ca6-f9fd-4a18-9adc-b25de4a45216",
+      "name": "Get many rows in users",
+      "credentials": {
+        "supabaseApi": {
+          "id": "Vixi9OXHGDPDaAKh",
+          "name": "Supabase account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "tableId": "users",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "id",
+              "condition": "eq",
+              "keyValue": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('conditions0_Field_Value', ``, 'string') }}"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.supabaseTool",
+      "typeVersion": 1,
+      "position": [
+        2224,
+        672
+      ],
+      "id": "6e525763-9fc1-4e38-ab5a-24cd59ef8635",
+      "name": "Update a row in users",
+      "credentials": {
+        "supabaseApi": {
+          "id": "Vixi9OXHGDPDaAKh",
+          "name": "Supabase account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "getAll",
+        "tableId": "courses",
+        "limit": 20,
+        "filterType": "none"
+      },
+      "type": "n8n-nodes-base.supabaseTool",
+      "typeVersion": 1,
+      "position": [
+        1936,
+        672
+      ],
+      "id": "2b7b5108-3146-40fe-a7d7-93beca266cb5",
+      "name": "Get many rows in courses",
+      "credentials": {
+        "supabaseApi": {
+          "id": "Vixi9OXHGDPDaAKh",
+          "name": "Supabase account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "When chat message received": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Simple Memory1": {
+      "ai_memory": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get many rows in users": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Update a row in users": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get many rows in courses": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "a1b54c23-2399-4b2d-97d2-7287f17ad49b",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "f432fee54c9f88f71601a94bc0d3b393003f9ae63a0ebe364fa7465b577d5c1c"
+  },
+  "id": "4JIkSVhl6p4qDfTU",
+  "tags": []
+}

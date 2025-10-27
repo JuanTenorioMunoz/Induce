@@ -1,19 +1,42 @@
 @import url('https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200..1000;1,200..1000&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
 
 :root {
   line-height: 1.5;
   font-weight: 400;
 
-  --color-primary: #353CA4;
-  --color-secondary: #ec4899;
-  --color-text: #080D17;
-  --color-ligth-text: #4A5565;
+    /* Colores del branding */
+  --color-violet_blue: #353CA4;
+  --color-chartreuse: #D9F103;
+  --color-dark_sky_blue: #88bbd8;
+  --color-white: #EBF2FF;
+  --color-alice_blue: #F9FAFB;
   
+  /* Colores de texto */
+  --color-fondos_oscuros: #FCFCFC;
+  --color-elementos_oscuros: #F2F2F2;
+  --color-texto_deshabilitado: #9B9C9F;
+  --color-texto_secundario: #494D58;
+  --color-texto_principal: #252B38;
+  --color-texto-titulos_y_texto_destacado: #080D17; 
+  
+  /* Colores de estado provisionales*/
+  --color-success: #22c55e;
+  --color-warning: #f59e0b;
+  --color-error: #ef4444;
+  
+  /* Colores de fondo */
+  --color-background-alice_blue: #F9FAFB;
+  --color-background-gray_white_bg: #2E2E31;
+  --color-background-black: #F3F4F6;
+
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+
 
 .font-primary {
   font-family: "Mulish", sans-serif;
@@ -21,5 +44,92 @@
   font-weight: 400;
   font-style: normal;
 }
+
+.font-outfit {
+  font-family: "Outfit", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 600;
+  font-style: normal;
+  font-size: 1.1rem;
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Modo oscuro */
+[data-theme="dark"] {
+  --color-background: #0f172a;
+  --color-background-dark: #1e293b;
+  --color-text: #f1f5f9;
+  --color-text-light: #94a3b8;
+}
+
+/* Estilos base */
+body {
+  background-color: var(--color-background-alice_blue);
+  color: var(--color-texto_principal);
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  font-weight: 500;
+  color: #646cff;
+  text-decoration: inherit;
+}
+a:hover {
+  color: #535bf2;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  place-items: center;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+h1 {
+  font-size: 3.2em;
+  line-height: 1.1;
+}
+
+button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: #1a1a1a;
+  cursor: pointer;
+  transition: border-color 0.25s;
+}
+
+button:hover {
+  border-color: #646cff;
+}
+
+button:focus,
+button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    color: #213547;
+    background-color: #ffffff;
+  }
+  a:hover {
+    color: #747bff;
+  }
+  button {
+    background-color: #f9f9f9;
+  }
+}
+
+
 
 @import "tailwindcss";
