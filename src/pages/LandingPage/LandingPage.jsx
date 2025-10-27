@@ -1,10 +1,8 @@
-
+import Sidebar from "../../components/Sidebar/Sidebar";
 
 const LandingPage = () => {
-    return(
-        <>
-        </>
-    )
+    return(<>
+    <Sidebar></Sidebar>
+    </>)
 }
-
-export default LandingPage;
+export default LandingPage
