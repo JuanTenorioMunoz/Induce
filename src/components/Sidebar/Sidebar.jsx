@@ -3,7 +3,7 @@ import ButtonSidebar from "./ButtonSidebar";
 const Sidebar = () => {
     return(
         <div class="flex flex-col">
-            <ButtonSidebar icon="" name="Inicio"></ButtonSidebar>
+            <ButtonSidebar icon="--icon-home" name="Inicio"></ButtonSidebar>
             <ButtonSidebar icon="" name="Mi perfil"></ButtonSidebar>
             <ButtonSidebar icon="" name="Mis vacantes"></ButtonSidebar>
             <ButtonSidebar icon="" name="Mi currículum"></ButtonSidebar>
