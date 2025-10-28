@@ -3,6 +3,7 @@ import { Send } from "lucide-react";
 import ChatBubble from "./ChatBubble";
 import ChatOption from "./ChatOption";
 import iconChat from "../../assets/iconChat.svg";
+import send from "../../assets/send.svg";
 
 const ChatWidget = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -93,8 +94,8 @@ const ChatWidget = () => {
       )}
 
       {isOpen && (
-        <div className="flex flex-col w-[360px] h-[520px] bg-white rounded-xl shadow-[0_2px_10px_rgba(0,0,0,0.08)] overflow-hidden border border-[var(--color-neutral)]">
-          <div className="flex items-center justify-between p-3 border-b border-[var(--color-neutral)] bg-[var(--color-background)] text-[var(--color-primary)] font-outfit text-lg">
+        <div className="flex flex-col w-[360px] h-[520px] rounded-xl shadow-[0_2px_10px_rgba(0,0,0,0.08)] overflow-hidden border border-[var(--color-neutral)]">
+          <div className="flex items-center justify-between p-3 bg-[var(--color-violet_blue)] text-[var(--color-fondo_blanco)] font-outfit text-lg">
             Asistente Virtual
             <button
               onClick={() => setIsOpen(false)}

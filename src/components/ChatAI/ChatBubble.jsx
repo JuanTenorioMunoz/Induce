@@ -1,25 +1,38 @@
 import ReactMarkdown from "react-markdown";
+import ChatBot from "../../assets/ChatBot.svg";
+import UserPic from "../../assets/UserPic.svg";
 
 const ChatBubble = ({ msg }) => {
+  const isUser = msg.from === "user";
+
   return (
     <div
-      className={`flex flex-col ${
-        msg.from === "user" ? "items-end" : "items-start"
+      className={`flex items-start gap-2 mb-2 ${
+        isUser ? "justify-end" : "justify-start"
       }`}
     >
-      {msg.from === "bot" ? (
-        msg.text.split(/\n(?=\*\*)/).map((section, i) => (
-          <div
-            key={i}
-            className="p-3 rounded-2xl text-sm leading-relaxed max-w-[80%] bg-[var(--color-secondary)] text-[var(--color-texto_principal)] mb-2"
-          >
-            <ReactMarkdown>{section}</ReactMarkdown>
-          </div>
-        ))
-      ) : (
-        <div className="p-3 rounded-2xl text-sm leading-relaxed max-w-[80%] bg-[var(--color-violet_blue_lighter)] text-[var(--color-texto_principal)]">
-          {msg.text}
-        </div>
+      {!isUser && (
+        <img
+          src={ChatBot}
+          alt="Bot"
+        />
+      )}
+
+      <div
+        className={`p-3 rounded-2xl text-sm leading-relaxed max-w-[80%] ${
+          isUser
+            ? "bg-[var(--color-violet_blue_lighter)] text-[var(--color-texto_principal)]"
+            : "bg-[var(--color-white)] text-[var(--color-texto_principal)]"
+        }`}
+      >
+        {isUser ? msg.text : <ReactMarkdown>{msg.text}</ReactMarkdown>}
+      </div>
+
+      {isUser && (
+        <img
+          src={UserPic}
+          alt="User"
+        />
       )}
     </div>
   );

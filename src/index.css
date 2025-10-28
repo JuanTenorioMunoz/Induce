@@ -20,6 +20,7 @@
   --color-violet_blue_lighter: #D6D9FF;
   
   /* Colores de texto */
+  --color-fondo_blanco: #F9F9F9;
   --color-fondos_oscuros: #FCFCFC;
   --color-elementos_oscuros: #F2F2F2;
   --color-texto_deshabilitado: #9B9C9F;
@@ -64,22 +65,8 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Modo oscuro */
-[data-theme="dark"] {
-  --color-background: #0f172a;
-  --color-background-dark: #1e293b;
-  --color-text: #f1f5f9;
-  --color-text-light: #94a3b8;
-}
 
-/* Estilos base */
-body {
-  background-color: var(--color-background-alice_blue);
-  color: var(--color-texto_principal);
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  margin: 0;
-  padding: 0;
-}
+
 
 a {
   font-weight: 500;

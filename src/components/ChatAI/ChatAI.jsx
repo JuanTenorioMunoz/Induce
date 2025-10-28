@@ -1,8 +1,8 @@
-// ChatAI.jsx
 import { useState, useEffect, useRef } from "react";
-import { Send } from "lucide-react";
 import ChatBubble from "./ChatBubble";
 import ChatOption from "./ChatOption";
+import ChatTextInput from "./ChatTextInput";
+import ChatSendButton from "./ChatSendButton";
 
 const ChatAI = () => {
   const [messages, setMessages] = useState([
@@ -82,12 +82,12 @@ const ChatAI = () => {
   const lastMsg = messages[messages.length - 1];
 
   return (
-    <div className="fixed inset-0 flex flex-col items-center justify-center bg-[var(--color-background)] font-primary text-[var(--color-text)]">
-      <div className="mb-4 text-[var(--color-primary)] font-outfit text-lg">
-        Demo DUCI - Asistente Virtual
+    <div className="fixed inset-0 flex flex-col items-center justify-center bg-[var(--color-fondo_blanco)] font-primary text-[var(--color-text)]">
+      <div className="mb-4 text-[var(--color-violet_blue)] font-outfit text-lg">
+        Creador de CV con IA
       </div>
 
-      <div className="flex flex-col w-[520px] h-[750px] bg-white rounded-xl shadow-[0_2px_10px_rgba(0,0,0,0.08)] overflow-hidden border border-[var(--color-neutral)] font-primary">
+      <div className="flex flex-col w-[743px] h-[800px] bg-[var(--color-fondo_blanco)] rounded-[14px] border-t-[1.11px] border-[#0000001a] overflow-hidden shadow-sm">
         <div
           ref={chatBodyRef}
           className="flex-1 px-4 py-4 overflow-y-auto flex flex-col gap-3 scroll-smooth"
@@ -99,28 +99,27 @@ const ChatAI = () => {
           {lastMsg.options && (
             <div className="flex flex-wrap gap-2 mt-2 items-start">
               {lastMsg.options.map((opt, i) => (
-                <ChatOption key={i} label={opt} onClick={() => handleOptionClick(opt)} />
+                <ChatOption
+                  key={i}
+                  label={opt}
+                  onClick={() => handleOptionClick(opt)}
+                />
               ))}
             </div>
           )}
         </div>
 
-        <div className="border-t border-[var(--color-neutral)] p-3 flex gap-2 items-center">
-          <input
-            type="text"
+        <section className="flex flex-col items-start pt-[17.1px] pb-0 px-[15.99px] border-t-[1.11px] border-[#0000001a] relative">
+          <ChatTextInput
             value={input}
-            onChange={(e) => setInput(e.target.value)}
-            onKeyDown={(e) => e.key === "Enter" && sendMessage(input)}
-            placeholder="Escribe tu mensaje..."
-            className="flex-1 border border-[var(--color-neutral)] rounded-full px-4 py-2 text-sm outline-none focus:ring-2 focus:ring-[var(--color-primary)] text-[var(--color-text)] placeholder-[var(--color-ligth-text)]"
+            onChange={setInput}
+            onSubmit={() => sendMessage(input)}
           />
-          <button
+          <ChatSendButton
+            disabled={!input.trim()}
             onClick={() => sendMessage(input)}
-            className="bg-[var(--color-primary)] text-white p-2 rounded-full hover:bg-[var(--color-secondary)] hover:text-[var(--color-text)] transition-all"
-          >
-            <Send size={18} />
-          </button>
-        </div>
+          />
+        </section>
       </div>
     </div>
   );
