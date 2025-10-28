@@ -2,7 +2,7 @@
 const ButtonSidebar = ({icon, name, state}) => {
     return(
         <button
-        class="bg-transparent"
+        className="bg-transparent hover:bg-[var(--color-violet_blue)] {`icon-${icon}`}"
         >{icon}{name}</button>
     )
 }
