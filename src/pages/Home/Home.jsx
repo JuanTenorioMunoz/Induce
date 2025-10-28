@@ -1,10 +1,10 @@
-import ChatAI from './../../components/ChatAI/ChatAI';
+import ChatWidget from '../../components/ChatAI/ChatWidget';
 
 const Home = () => {
   
   return (
     <>
-    <ChatAI></ChatAI>
+    <ChatWidget></ChatWidget>
     </>
   );
 };

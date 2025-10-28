@@ -17,6 +17,7 @@
   --color-white: #EBF2FF;
   --color-alice_blue: #F9FAFB;
   --color-violet_blue_light: #848AE2;
+  --color-violet_blue_lighter: #D6D9FF;
   
   /* Colores de texto */
   --color-fondos_oscuros: #FCFCFC;
@@ -110,9 +111,6 @@ h1 {
   }
   a:hover {
     color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
   }
 }
 

@@ -1,10 +1,10 @@
-
 import { useState, useEffect, useRef } from "react";
 import { Send } from "lucide-react";
 import ChatBubble from "./ChatBubble";
 import ChatOption from "./ChatOption";
 
 const ChatWidget = () => {
+  const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState([
     {
       from: "bot",
@@ -82,46 +82,67 @@ const ChatWidget = () => {
   const lastMsg = messages[messages.length - 1];
 
   return (
-    <div className="fixed inset-0 flex flex-col items-center justify-center bg-[var(--color-background)] font-primary text-[var(--color-text)]">
-      <div className="mb-4 text-[var(--color-primary)] font-outfit text-lg">
-        Demo DUCI - Asistente Virtual
-      </div>
-
-      <div className="flex flex-col w-[520px] h-[750px] bg-white rounded-xl shadow-[0_2px_10px_rgba(0,0,0,0.08)] overflow-hidden border border-[var(--color-neutral)] font-primary">
-        <div
-          ref={chatBodyRef}
-          className="flex-1 px-4 py-4 overflow-y-auto flex flex-col gap-3 scroll-smooth"
+    <div className="fixed bottom-6 right-6 z-50 font-primary text-[var(--color-text)]">
+      {!isOpen && (
+        <button
+          onClick={() => setIsOpen(true)}
+          className="bg-[var(--color-primary)] text-white px-4 py-3 rounded-full shadow-lg hover:bg-[var(--color-secondary)] transition-all"
         >
-          {messages.map((msg, i) => (
-            <ChatBubble key={i} msg={msg} />
-          ))}
+          Chat
+        </button>
+      )}
 
-          {lastMsg.options && (
-            <div className="flex flex-wrap gap-2 mt-2 items-start">
-              {lastMsg.options.map((opt, i) => (
-                <ChatOption key={i} label={opt} onClick={() => handleOptionClick(opt)} />
-              ))}
-            </div>
-          )}
-        </div>
+      {isOpen && (
+        <div className="flex flex-col w-[360px] h-[520px] bg-white rounded-xl shadow-[0_2px_10px_rgba(0,0,0,0.08)] overflow-hidden border border-[var(--color-neutral)]">
+          <div className="flex items-center justify-between p-3 border-b border-[var(--color-neutral)] bg-[var(--color-background)] text-[var(--color-primary)] font-outfit text-lg">
+            Asistente Virtual
+            <button
+              onClick={() => setIsOpen(false)}
+              className="text-[var(--color-text)] text-sm px-2 py-1 rounded hover:bg-[var(--color-neutral)]"
+            >
+              ×
+            </button>
+          </div>
 
-        <div className="border-t border-[var(--color-neutral)] p-3 flex gap-2 items-center">
-          <input
-            type="text"
-            value={input}
-            onChange={(e) => setInput(e.target.value)}
-            onKeyDown={(e) => e.key === "Enter" && sendMessage(input)}
-            placeholder="Escribe tu mensaje..."
-            className="flex-1 border border-[var(--color-neutral)] rounded-full px-4 py-2 text-sm outline-none focus:ring-2 focus:ring-[var(--color-primary)] text-[var(--color-text)] placeholder-[var(--color-ligth-text)]"
-          />
-          <button
-            onClick={() => sendMessage(input)}
-            className="bg-[var(--color-primary)] text-white p-2 rounded-full hover:bg-[var(--color-secondary)] hover:text-[var(--color-text)] transition-all"
+          <div
+            ref={chatBodyRef}
+            className="flex-1 px-4 py-4 overflow-y-auto flex flex-col gap-3 scroll-smooth"
           >
-            <Send size={18} />
-          </button>
+            {messages.map((msg, i) => (
+              <ChatBubble key={i} msg={msg} />
+            ))}
+
+            {lastMsg.options && (
+              <div className="flex flex-wrap gap-2 mt-2 items-start">
+                {lastMsg.options.map((opt, i) => (
+                  <ChatOption
+                    key={i}
+                    label={opt}
+                    onClick={() => handleOptionClick(opt)}
+                  />
+                ))}
+              </div>
+            )}
+          </div>
+
+          <div className="border-t border-[var(--color-neutral)] p-3 flex gap-2 items-center">
+            <input
+              type="text"
+              value={input}
+              onChange={(e) => setInput(e.target.value)}
+              onKeyDown={(e) => e.key === "Enter" && sendMessage(input)}
+              placeholder="Escribe tu mensaje..."
+              className="flex-1 border border-[var(--color-neutral)] rounded-full px-4 py-2 text-sm outline-none focus:ring-2 focus:ring-[var(--color-primary)] text-[var(--color-text)] placeholder-[var(--color-ligth-text)]"
+            />
+            <button
+              onClick={() => sendMessage(input)}
+              className="bg-[var(--color-primary)] text-white p-2 rounded-full hover:bg-[var(--color-secondary)] hover:text-[var(--color-text)] transition-all"
+            >
+              <Send size={18} />
+            </button>
+          </div>
         </div>
-      </div>
+      )}
     </div>
   );
 };
