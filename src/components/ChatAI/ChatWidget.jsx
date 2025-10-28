@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import { Send } from "lucide-react";
 import ChatBubble from "./ChatBubble";
 import ChatOption from "./ChatOption";
+import iconChat from "../../assets/iconChat.svg";
 
 const ChatWidget = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -84,12 +85,11 @@ const ChatWidget = () => {
   return (
     <div className="fixed bottom-6 right-6 z-50 font-primary text-[var(--color-text)]">
       {!isOpen && (
-        <button
+        <img
+          src={iconChat}
+          alt="Chat icon"
           onClick={() => setIsOpen(true)}
-          className="bg-[var(--color-primary)] text-white px-4 py-3 rounded-full shadow-lg hover:bg-[var(--color-secondary)] transition-all"
-        >
-          Chat
-        </button>
+        />
       )}
 
       {isOpen && (
