@@ -1,8 +1,10 @@
 import Sidebar from "../../components/Sidebar/Sidebar";
 
 const LandingPage = () => {
-    return(<>
-    <Sidebar></Sidebar>
-    </>)
+    return(
+        <div className="flex">
+            <Sidebar />
+        </div>
+    )
 }
 export default LandingPage
