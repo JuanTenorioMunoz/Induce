@@ -29,6 +29,8 @@
   --color-background-alice_blue: #F9FAFB;
   --color-background-gray_white_bg: #2E2E31;
   --color-background-black: #F3F4F6;
+
+  --color-violet_blue_200: #D6D9FF
 }
 
 /* Modo oscuro */
@@ -115,7 +117,7 @@ button:focus-visible {
 }
 
 .sidebar-button:hover {
-  background-color: var(--color-violet_blue);
+  background-color: var(--color-violet_blue_200);
 }
 
 .sidebar-button:hover .sidebar-icon {
