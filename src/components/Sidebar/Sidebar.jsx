@@ -7,8 +7,8 @@ const Sidebar = () => {
             <div className="mb-6" style={{ width: '200px' }}>
                 <img src={logoInduce} alt="Logo Induce" style={{ width: '100%', height: 'auto', display: 'block' }} />
             </div>
-            <ButtonSidebar icon="bi-house-fill" name="Inicio"></ButtonSidebar>
-            <ButtonSidebar icon="bi-person-fill" name="Mi perfil"></ButtonSidebar>
+            <ButtonSidebar icon="bi-house-fill" name="Inicio" to="/"></ButtonSidebar>
+            <ButtonSidebar icon="bi-person-fill" name="Mi perfil" to="/profile"></ButtonSidebar>
             <ButtonSidebar icon="bi-briefcase-fill" name="Mis vacantes"></ButtonSidebar>
             <ButtonSidebar icon="bi-file-earmark-text-fill" name="Mi currículum"></ButtonSidebar>
             <ButtonSidebar icon="bi-gear-fill" name="Configuración"></ButtonSidebar>
