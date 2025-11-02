@@ -1,11 +1,12 @@
+import ChatWidget from '../../components/ChatAI/ChatWidget';
+
 const Home = () => {
+  
   return (
-    <div>
-      <p>Home</p>
-    </div>
+    <>
+    <ChatWidget></ChatWidget>
+    </>
   );
-}
+};
 
 export default Home;
-
-

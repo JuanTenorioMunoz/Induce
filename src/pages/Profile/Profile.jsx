@@ -1,11 +1,11 @@
+
+
+
 const Profile = () => {
-  return (
-    <div>
-      <p>Profile</p>
-    </div>
-  );
+    return(
+        <>
+        </>
+    )
 }
 
 export default Profile;
-
-
