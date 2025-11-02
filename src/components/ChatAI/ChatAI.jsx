@@ -90,7 +90,7 @@ const ChatAI = () => {
       <div className="flex flex-col w-[743px] h-[800px] bg-[var(--color-fondo_blanco)] rounded-[14px] border-t-[1.11px] border-[#0000001a] overflow-hidden shadow-sm">
         <div
           ref={chatBodyRef}
-          className="flex-1 px-4 py-4 overflow-y-auto flex flex-col gap-3 scroll-smooth"
+          className="flex-1 px-4 py-4 overflow-y-auto flex flex-col gap-3 justify-end scroll-smooth"
         >
           {messages.map((msg, i) => (
             <ChatBubble key={i} msg={msg} />
@@ -109,17 +109,18 @@ const ChatAI = () => {
           )}
         </div>
 
-        <section className="flex flex-col items-start pt-[17.1px] pb-0 px-[15.99px] border-t-[1.11px] border-[#0000001a] relative">
+        <section className="flex items-center gap-2 p-4 border-t border-[#0000001a]">
           <ChatTextInput
             value={input}
             onChange={setInput}
             onSubmit={() => sendMessage(input)}
-          />
+                />
           <ChatSendButton
             disabled={!input.trim()}
             onClick={() => sendMessage(input)}
           />
-        </section>
+</section>
+
       </div>
     </div>
   );
