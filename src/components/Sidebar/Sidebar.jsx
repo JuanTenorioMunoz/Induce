@@ -3,16 +3,25 @@ import logoInduce from "../../assets/Logo_induce.png";
 
 const Sidebar = () => {
     return(
-        <div className="flex flex-col">
-            <div className="mb-6" style={{ width: '200px' }}>
-                <img src={logoInduce} alt="Logo Induce" style={{ width: '100%', height: 'auto', display: 'block' }} />
+        <div className="sidebar-container">
+            {/* Logo centrado al principio */}
+            <div className="sidebar-logo-container">
+                <img src={logoInduce} alt="Logo Induce" className="sidebar-logo" />
             </div>
-            <ButtonSidebar icon="bi-house-fill" name="Inicio" to="/"></ButtonSidebar>
-            <ButtonSidebar icon="bi-person-fill" name="Mi perfil" to="/profile"></ButtonSidebar>
-            <ButtonSidebar icon="bi-briefcase-fill" name="Mis vacantes"></ButtonSidebar>
-            <ButtonSidebar icon="bi-file-earmark-text-fill" name="Mi currículum"></ButtonSidebar>
-            <ButtonSidebar icon="bi-gear-fill" name="Configuración"></ButtonSidebar>
-            <ButtonSidebar icon="bi-box-arrow-right" name="Cerrar Sesión"></ButtonSidebar>
+            
+            {/* Contenedor de botones con espacio flexible */}
+            <div className="sidebar-buttons-container">
+                <ButtonSidebar icon="house-fill" name="Inicio" to="/"></ButtonSidebar>
+                <ButtonSidebar icon="person-fill" name="Mi perfil" to="/profile"></ButtonSidebar>
+                <ButtonSidebar icon="briefcase-fill" name="Mis vacantes" to="/#"></ButtonSidebar>
+                <ButtonSidebar icon="file-earmark-text-fill" name="Mi currículum" to="/cv"></ButtonSidebar>
+                <ButtonSidebar icon="gear-fill" name="Configuración" to="/#"></ButtonSidebar>
+            </div>
+            
+            {/* Botón de cerrar sesión al final */}
+            <div className="sidebar-footer">
+                <ButtonSidebar icon="box-arrow-right" name="Cerrar Sesión"></ButtonSidebar>
+            </div>
         </div>
     )
 }
