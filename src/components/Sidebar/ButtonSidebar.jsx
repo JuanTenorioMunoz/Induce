@@ -1,9 +1,10 @@
-
-const ButtonSidebar = ({icon, name, state}) => {
+import { Link } from "react-router-dom";
+const ButtonSidebar = ({icon, name, to}) => {
     return(
-        <button
-        className="bg-transparent hover:bg-[var(--color-violet_blue)] {`icon-${icon}`}"
-        >{icon}{name}</button>
+        <Link to={to || "#"} className="sidebar-button">
+            <i className={`bi bi-${icon} sidebar-icon`}></i>
+            <span>{name}</span>
+        </Link>
     )
 }
 export default ButtonSidebar

@@ -1,18 +1,28 @@
+@import url('https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200..1000;1,200..1000&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
+@import url('https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@import url('https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css');
 
-/* Tema personalizado con variables CSS */
+
 :root {
-  /* Colores del branding */
+  line-height: 1.5;
+  font-weight: 400;
+
+    /* Colores del branding */
   --color-violet_blue: #353CA4;
   --color-chartreuse: #D9F103;
   --color-dark_sky_blue: #88bbd8;
   --color-white: #EBF2FF;
-  --color-alice_blue: #F9FAFB;
+  --color-alice_blue: #FAFBFF;
+  --color-violet_blue_200: #D6D9FF;
+  --color-violet_blue_400: #848AE2;
+  --color-violet_blue_500: #6670E5;
   
   /* Colores de texto */
+  --color-fondo_blanco: #F9F9F9;
   --color-fondos_oscuros: #FCFCFC;
   --color-elementos_oscuros: #F2F2F2;
   --color-texto_deshabilitado: #9B9C9F;
@@ -30,28 +40,29 @@
   --color-background-gray_white_bg: #2E2E31;
   --color-background-black: #F3F4F6;
 
-
-  --icon-home: "/f015";
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-/* Modo oscuro */
-[data-theme="dark"] {
-  --color-background: #0f172a;
-  --color-background-dark: #1e293b;
-  --color-text: #f1f5f9;
-  --color-text-light: #94a3b8;
+
+
+.font-primary {
+  font-family: "Mulish", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
 }
 
-/* Estilos base */
-
-
-body {
-  background-color: var(--color-background-alice_blue);
-  color: var(--color-texto_principal);
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  margin: 0;
-  padding: 0;
+.font-outfit {
+  font-family: "Outfit", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 600;
+  font-style: normal;
+  font-size: 1.1rem;
 }
+
 
 a {
   font-weight: 500;
@@ -62,37 +73,9 @@ a:hover {
   color: #535bf2;
 }
 
-body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
-  
-}
-
 h1 {
   font-size: 3.2em;
   line-height: 1.1;
-}
-
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-
-
-
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
 }
 
 @media (prefers-color-scheme: light) {
@@ -103,7 +86,94 @@ button:focus-visible {
   a:hover {
     color: #747bff;
   }
-  button {
-    background-color: #f9f9f9;
-  }
+}
+
+
+.sidebar-icon {
+  font-size: 1.2rem;
+  margin-right: 0.75rem;
+  color: var(--color-violet_blue_400);
+}
+
+
+.sidebar-button {
+  display: flex;
+  align-items: center;
+  padding: 0.75rem 1rem;
+  width: 100%;
+  max-width: 100%; 
+  text-align: left;
+  background-color: transparent;
+  border: none;
+  border-radius: 8px;
+  transition: background-color 0.2s, color 0.2s;
+  text-decoration: none;
+  color: var(--color-texto_principal); 
+  cursor: pointer;
+  font-weight: 400; 
+  font-family: "Mulish", sans-serif; 
+  font-optical-sizing: auto;
+  font-style: normal;
+  box-sizing: border-box; 
+}
+
+.sidebar-button:hover {
+  background-color: var(--color-violet_blue_200);
+  color: var(--color-texto-titulos_y_texto_destacado);
+}
+
+.sidebar-button:hover .sidebar-icon {
+  color: var(--color-violet_blue_500);
+}
+
+
+.sidebar-button.active {
+  background-color: var(--color-violet_blue);
+  color: var(--color-white);
+}
+
+.sidebar-button.active .sidebar-icon {
+  color: var(--color-white);
+}
+
+.sidebar-container {
+  height: 100vh; 
+  width: 280px; 
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box; 
+  background-color: var(--color-background-alice_blue);
+}
+
+.sidebar-logo-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1.5rem 1rem;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.sidebar-logo {
+  max-width: 100%; 
+  width: auto; 
+  height: auto;
+  display: block;
+}
+
+.sidebar-buttons-container {
+  display: flex;
+  flex-direction: column;
+  flex: 1; 
+  gap: 0.25rem;
+  padding: 0 0.5rem;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.sidebar-footer {
+  margin-top: auto; 
+  padding-bottom: 1rem;
+  width: 100%;
+  box-sizing: border-box;
 }
