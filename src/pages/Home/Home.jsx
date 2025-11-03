@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import ChatWidget from "../../components/ChatAI/ChatWidget";
 import JobCard from "../../components/JobCard/JobCard";
 import { fetchAllFromTable } from "../../utils/supabaseUtils";
+import { parseJSON } from "../../utils/utils";
 
 const Home = () => {
   const [courses, setCourses] = useState([]);
@@ -30,7 +31,7 @@ const Home = () => {
             level={course.level}
             salary={course.salary}
             description={course.description}
-            tags={course.tags ? course.tags.split(",") : []}
+            tags={parseJSON(course.skills)}
             timeAgo={course.timeAgo}
             recommended={course.recommended}
             match={course.match}
