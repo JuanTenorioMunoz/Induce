@@ -17,7 +17,7 @@ export const JobCard = ({
       className="
         flex flex-col w-full max-w-[675px] p-4 
         bg-[var(--color-alice_blue)] rounded-lg font-primary
-        shadow-[var(--shadow-cm)]
+        shadow-[var(--shadow-sm)]
       "
     >
       <header className="flex items-center justify-between mb-3">
