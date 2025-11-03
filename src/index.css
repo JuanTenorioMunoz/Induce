@@ -6,7 +6,6 @@
 @tailwind components;
 @tailwind utilities;
 
-
 body {
   margin: 0;
   padding: 0;
@@ -17,23 +16,23 @@ body {
   font-weight: 400;
 
     /* Colores del branding */
-  --color-violet_blue: #353CA4;
+  --color-violet-blue: #353CA4;
   --color-chartreuse: #D9F103;
-  --color-dark_sky_blue: #88bbd8;
+  --color-dark-sky-blue: #88bbd8;
   --color-white: #EBF2FF;
-  --color-alice_blue: #FAFBFF;
-  --color-violet_blue_200: #D6D9FF;
-  --color-violet_blue_400: #848AE2;
-  --color-violet_blue_500: #6670E5;
+  --color-alice-blue: #FAFBFF;
+  --color-violet-blue-200: #D6D9FF;
+  --color-violet-blue-400: #848AE2;
+  --color-violet-blue-500: #6670E5;
   
   /* Colores de texto */
-  --color-fondo_blanco: #F9F9F9;
-  --color-fondos_oscuros: #FCFCFC;
-  --color-elementos_oscuros: #F2F2F2;
-  --color-texto_deshabilitado: #9B9C9F;
-  --color-texto_secundario: #494D58;
-  --color-texto_principal: #252B38;
-  --color-texto-titulos_y_texto_destacado: #080D17; 
+  --color-fondo-blanco: #F9F9F9;
+  --color-fondos-oscuros: #FCFCFC;
+  --color-elementos-oscuros: #F2F2F2;
+  --color-texto-deshabilitado: #9B9C9F;
+  --color-texto-secundario: #494D58;
+  --color-texto-principal: #252B38;
+  --color-texto-titulos-y-texto-destacado: #080D17; 
   
   /* Colores de estado provisionales*/
   --color-success: #22c55e;
@@ -41,8 +40,8 @@ body {
   --color-error: #ef4444;
   
   /* Colores de fondo */
-  --color-background-alice_blue: #F9FAFB;
-  --color-background-gray_white_bg: #2E2E31;
+  --color-background-alice-blue: #F9FAFB;
+  --color-background-gray-white-bg: #2E2E31;
   --color-background-black: #F3F4F6;
 
   font-synthesis: none;
@@ -68,7 +67,6 @@ body {
   font-size: 1.1rem;
 }
 
-
 a {
   font-weight: 500;
   color: #646cff;
@@ -93,8 +91,7 @@ h1 {
   }
 }
 
-
-.sidebar-icon {
+ .sidebar-icon {
   font-size: 1.2rem;
   margin-right: 0.75rem;
   color: var(--color-violet_blue_400);
@@ -130,7 +127,6 @@ h1 {
 .sidebar-button:hover .sidebar-icon {
   color: var(--color-violet_blue_500);
 }
-
 
 .sidebar-button.active {
   background-color: var(--color-violet_blue);
@@ -181,4 +177,4 @@ h1 {
   padding-bottom: 1rem;
   width: 100%;
   box-sizing: border-box;
-}
+} 
