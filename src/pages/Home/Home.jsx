@@ -23,6 +23,7 @@ const Home = () => {
 
   return (
     <>
+    <div className="flex flex-row">
     <Sidebar></Sidebar>
       <div className="flex flex-col items-center gap-4 p-6">
         {courses.map((course, index) => (
@@ -39,6 +40,7 @@ const Home = () => {
             match={course.match}
           />
         ))}
+      </div>
       </div>
 
       <ChatWidget />

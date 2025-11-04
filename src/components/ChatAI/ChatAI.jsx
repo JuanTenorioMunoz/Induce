@@ -82,15 +82,16 @@ const ChatAI = () => {
   const lastMsg = messages[messages.length - 1];
 
   return (
-    <div className="fixed inset-0 flex flex-col items-center justify-center bg-[var(--color-fondo_blanco)] font-primary text-[var(--color-text)]">
-      <div className="mb-4 text-[var(--color-violet_blue)] font-outfit text-lg">
+    <div className="flex flex-col min-h-screen bg-[var(--color-fondo_blanco)] font-primary text-[var(--color-text)] p-4">
+      <div className="mb-4 text-[var(--color-violet_blue)] font-outfit text-xl sm:text-lg">
         Creador de CV con IA
       </div>
 
-      <div className="flex flex-col w-[743px] h-[800px] bg-[var(--color-fondo_blanco)] rounded-[14px] border-t-[1.11px] border-[#0000001a] overflow-hidden shadow-sm">
+      <div className="flex flex-col w-full max-w-[740px] h-[80vh] sm:h-[750px] bg-[var(--color-fondo_blanco)] rounded-[14px] border-t border-[#0000001a] overflow-hidden shadow-md">
+        
         <div
           ref={chatBodyRef}
-          className="flex-1 px-4 py-4 overflow-y-auto flex flex-col gap-3 justify-end scroll-smooth"
+          className="flex-1 px-4 py-3 overflow-y-auto flex flex-col gap-3 justify-end scroll-smooth"
         >
           {messages.map((msg, i) => (
             <ChatBubble key={i} msg={msg} />
@@ -109,18 +110,19 @@ const ChatAI = () => {
           )}
         </div>
 
-        <section className="flex items-center gap-2 p-4 border-t border-[#0000001a]">
-          <ChatTextInput
-            value={input}
-            onChange={setInput}
-            onSubmit={() => sendMessage(input)}
-                />
+        <section className="flex items-center gap-3 p-3 border-t border-[#0000001a] bg-[var(--color-fondo_blanco)]">
+          <div className="flex-1">
+            <ChatTextInput
+              value={input}
+              onChange={setInput}
+              onSubmit={() => sendMessage(input)}
+            />
+          </div>
           <ChatSendButton
             disabled={!input.trim()}
             onClick={() => sendMessage(input)}
           />
-</section>
-
+        </section>
       </div>
     </div>
   );
