@@ -1,4 +1,5 @@
-import { supabase } from "./supabase";
+import { supabase } from "../services/supabase";
+
 
 export const signUpUser = async (email, password) => {
   const { data, error } = await supabase.auth.signUp({ email, password });
@@ -53,4 +54,15 @@ export const getCurrentUser = async () => {
     localStorage.setItem("user", JSON.stringify(data.user));
   }
   return data?.user || null;
+};
+
+export const fetchAllFromTable = async (tableName) => {
+  if (!tableName) throw new Error("Table name is required");
+
+  const { data, error } = await supabase.from(tableName).select("*");
+
+  if (error) throw error;
+
+  console.log(data)
+  return data;
 };
