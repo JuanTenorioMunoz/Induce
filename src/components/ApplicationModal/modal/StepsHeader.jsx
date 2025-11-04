@@ -8,43 +8,45 @@ const StepsHeader = ({ step = 1 }) => {
 
   return (
     <div className="w-full">
-      <div className="max-w-[56rem] mx-auto px-[2.8125rem] py-6">
-        <div className="flex items-start gap-[2rem] flex-nowrap md:flex-wrap justify-between">
+      <div className="max-w-[56rem] mx-auto px-12 py-6">
+        <div className="flex items-start gap-[2.75rem] flex-nowrap">
           {steps.map((s) => {
             const isActive = s.id === step;
             const isDone = s.id < step;
             return (
-              <div
-                key={s.id}
-                className="flex flex-col items-start min-w-[10rem] flex-shrink-0"
-              >
+              <div key={s.id} className="flex flex-col items-start min-w-[12rem]">
                 <div className="flex items-center gap-4">
                   <div
                     className="rounded-full flex items-center justify-center"
                     style={{
-                      width: s.id === 4 ? "1.5rem" : "1.675rem",
-                      height: "1.5rem",
-                      background: isActive
+                      width: "1.675rem",
+                      height: "1.675rem",
+                      background: isDone
+                        ? "var(--color-chartreuse)"
+                        : isActive
                         ? "var(--color-violet_blue_300)"
                         : "var(--color-violet_blue_200)",
                       border: `1px solid ${
-                        isActive
-                          ? "var(--color-violet-blue)"
-                          : "var(--color-violet_blue_200)"
+                        isDone
+                          ? "var(--color-chartreuse)"
+                          : "var(--color-violet_blue_300)"
                       }`,
                     }}
                   />
-                  <div
-                    style={{
-                      height: "2px",
-                      width: "6.5rem",
-                      background: isDone
-                        ? "var(--color-violet_blue_300)"
-                        : "var(--color-violet_blue_200)",
-                      borderRadius: "2px",
-                    }}
-                    aria-hidden
-                  />
+
+                  {s.id !== 4 && (
+                    <div
+                      style={{
+                        height: "2px",
+                        width: "6.5rem",
+                        background: isDone
+                          ? "var(--color-chartreuse)"
+                          : "var(--color-violet_blue_200)",
+                        borderRadius: "2px",
+                      }}
+                      aria-hidden
+                    />
+                  )}
                 </div>
 
                 <div className="mt-3">
@@ -59,15 +61,19 @@ const StepsHeader = ({ step = 1 }) => {
                     <span
                       className="inline-block px-2 py-[0.125rem] text-[0.4375rem] font-medium rounded-[8px]"
                       style={{
-                        background: isActive
+                        background: isDone
+                          ? "var(--color-chartreuse)"
+                          : isActive
                           ? "var(--color-violet_blue_300)"
                           : "var(--color-violet_blue_100)",
-                        color: isActive
+                        color: isDone
+                          ? "black"
+                          : isActive
                           ? "var(--color-violet-blue)"
                           : "var(--color-violet_blue_400)",
                       }}
                     >
-                      {isActive ? "En progreso" : "Pendiente"}
+                      {isDone ? "Completado" : isActive ? "En progreso" : "Pendiente"}
                     </span>
                   </div>
                 </div>
