@@ -1,11 +1,8 @@
+import Sidebar from "../../components/Sidebar/Sidebar";
 
-
-
-const Profile = () => {
-    return(
-        <>
-        </>
-    )
+const ProfilePage = () => {
+    return(<>
+    <Sidebar></Sidebar>
+    </>)
 }
-
-export default Profile;
+export default ProfilePage
