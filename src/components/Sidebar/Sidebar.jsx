@@ -13,7 +13,7 @@ const Sidebar = () => {
             <div className="sidebar-buttons-container">
                 <ButtonSidebar icon="house-fill" name="Inicio" to="/"></ButtonSidebar>
                 <ButtonSidebar icon="person-fill" name="Mi perfil" to="/profile"></ButtonSidebar>
-                <ButtonSidebar icon="briefcase-fill" name="Mis vacantes" to="/#"></ButtonSidebar>
+                <ButtonSidebar icon="briefcase-fill" name="Mis vacantes" to="/vacantes"></ButtonSidebar>
                 <ButtonSidebar icon="file-earmark-text-fill" name="Mi currículum" to="/cv"></ButtonSidebar>
                 <ButtonSidebar icon="gear-fill" name="Configuración" to="/#"></ButtonSidebar>
             </div>

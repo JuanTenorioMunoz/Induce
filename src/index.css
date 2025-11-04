@@ -22,6 +22,7 @@
   --color-violet_blue_200: #D6D9FF;
   --color-violet_blue_400: #848AE2;
   --color-violet_blue_500: #6670E5;
+  --color-fullwhite: #ffffff;
   
   /* Colores de texto */
   --color-fondo_blanco: #F9F9F9;
@@ -48,8 +49,8 @@
   -moz-osx-font-smoothing: grayscale;
 
   --shadow-sm: 
-    0 1px 2px rgba(0, 0, 0, 0.04),  
-    0 6px 10px rgba(0, 0, 0, 0.1);   
+    0 3px 2px rgba(0, 0, 0, 0.04),  
+    0 1px 1px rgba(0, 0, 0, 0.1);   
 }
 
 body {
