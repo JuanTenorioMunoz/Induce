@@ -4,6 +4,8 @@ import JobCard from "../../components/JobCard/JobCard";
 import { fetchAllFromTable } from "../../utils/supabaseUtils";
 import { parseJSON } from "../../utils/utils";
 import Sidebar from "../../components/Sidebar/Sidebar";
+import ProfileSummary from './../../components/ProfileSummary/ProfileSummary';
+import JobInfo from "../../components/JobInfo/JobInfo";
 
 const Home = () => {
   const [courses, setCourses] = useState([]);
@@ -24,7 +26,7 @@ const Home = () => {
   return (
     <>
     <div className="flex flex-row">
-    <Sidebar></Sidebar>
+      <Sidebar></Sidebar>
       <div className="flex flex-col items-center gap-4 p-6">
         {courses.map((course, index) => (
           <JobCard
@@ -42,7 +44,7 @@ const Home = () => {
         ))}
       </div>
       </div>
-
+      
       <ChatWidget />
     </>
   );
