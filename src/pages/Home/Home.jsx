@@ -44,7 +44,7 @@ const Home = () => {
         ))}
       </div>
       </div>
-      
+      <ProfileSummary></ProfileSummary>
       <ChatWidget />
     </>
   );
