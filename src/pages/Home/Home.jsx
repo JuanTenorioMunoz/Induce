@@ -3,6 +3,7 @@ import ChatWidget from "../../components/ChatAI/ChatWidget";
 import JobCard from "../../components/JobCard/JobCard";
 import { fetchAllFromTable } from "../../utils/supabaseUtils";
 import { parseJSON } from "../../utils/utils";
+import Sidebar from "../../components/Sidebar/Sidebar";
 
 const Home = () => {
   const [courses, setCourses] = useState([]);
@@ -22,6 +23,7 @@ const Home = () => {
 
   return (
     <>
+    <Sidebar></Sidebar>
       <div className="flex flex-col items-center gap-4 p-6">
         {courses.map((course, index) => (
           <JobCard
