@@ -1,13 +1,24 @@
+
 const JobStats = ({ sent = 0, viewed = 0, alerts = 0 }) => {
-    return(
-    <div>
-        <h4>Actividad laboral</h4>
-        <ul>
-            <li>Aplicaciones enviadas: {sent}</li>
-            <li>Perfiles vistos: {viewed}</li>
-            <li>Alertas de empleo: {alerts}</li>
-        </ul>
+  return (
+    <div className="job-stats">
+      <h4 className="job-title">Vacantes destacadas</h4>
+      <ul className="job-list">
+        <li>
+          <span>Aplicaciones enviadas</span>
+          <strong>{sent}</strong>
+        </li>
+        <li>
+          <span>Perfiles vistos</span>
+          <strong>{viewed}</strong>
+        </li>
+        <li>
+          <span>Alertas de empleo</span>
+          <strong>{alerts}</strong>
+        </li>
+      </ul>
     </div>
-    )
-}
-export default JobStats
+  );
+};
+
+export default JobStats;

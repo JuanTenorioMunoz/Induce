@@ -8,7 +8,14 @@ function App() {
 
   return (
     <>
-      <Router></Router>
+      <BrowserRouter>
+            <Routes>
+                <Route path="/" element={<Home/>}/>
+                <Route path="/profile" element={<Profile/>}/>
+                <Route path="/landing" element={<LandingPage/>}/>
+                
+            </Routes>
+        </BrowserRouter>
     </>
   )
 }

@@ -1,18 +1,21 @@
 
 const SkillList = ({ skills = [] }) => {
-    return(
-    <div>
-        <h4>Mis habilidades principales</h4>
+  return (
+    <div className="skill-list">
+      <h4 className="skill-title">Mis habilidades principales</h4>
+      <div className="skill-tags">
         {skills.length > 0 ? (
-        <ul>
-        {skills.map((skill, index) => (
-        <li key={index}>{skill}</li>
-        ))}
-        </ul>
+          skills.map((skill, index) => (
+            <span className="skill-tag" key={index}>
+              {skill}
+            </span>
+          ))
         ) : (
-        <p>[No hay habilidades registradas]</p>
+          <p>[No hay habilidades registradas]</p>
         )}
+      </div>
     </div>
-    )
-}
-export default SkillList
+  );
+};
+
+export default SkillList;
