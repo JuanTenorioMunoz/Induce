@@ -6,6 +6,9 @@ import { parseJSON } from "../../utils/utils";
 import Sidebar from "../../components/Sidebar/Sidebar";
 import ProfileSummary from "../../components/ProfileSummary/ProfileSummary";
 
+import JobApplicationModal from "../../components/ApplicationModal/ApplicationModal";
+import ApplicationModal from "../../components/ApplicationModal/ApplicationModal";
+
 const Home = () => {
   const [courses, setCourses] = useState([]);
 
@@ -25,6 +28,7 @@ const Home = () => {
   return (
     <>
     <Sidebar></Sidebar>
+    <ApplicationModal isOpen={true}></ApplicationModal>
       <div className="flex flex-col items-center gap-4 p-6">
         {courses.map((course, index) => (
           <JobCard
@@ -42,6 +46,7 @@ const Home = () => {
         ))}
       </div>
       <ProfileSummary></ProfileSummary>
+      
 
       <ChatWidget />
     </>

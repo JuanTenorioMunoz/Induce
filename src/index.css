@@ -16,14 +16,27 @@ body {
   line-height: 1.5;
   font-weight: 400;
 
+  /* Colores de botone primarios */
+  --color-buttons-primary-default: #353CA4;
+  --color-buttons-primary-hover: #4A51B7;
+  --color-buttons-primary-active: #292F94;
+  --color-buttons-primary-disabled: #E8E9EE;
+
+  /* Colores de botone primarios verdes */
+  --color-buttons-primarygreen-default: #D9F103;
+  --color-buttons-primarygreen-hover: #E9FF26;
+  --color-buttons-primarygreen-active: #D4EB06;
+  --color-buttons-primarygreen-disabled: #E8E9EE;
+
     /* Colores del branding */
   --color-violet-blue: #353CA4;
   --color-chartreuse: #D9F103;
   --color-dark-sky-blue: #88bbd8;
-  --color-white: #EBF2FF;
+  --color-white: #F9FAFB;
   --color-alice_blue: #FAFBFF;
   --color-violet_blue_100: #F5F6FF;
   --color-violet_blue_200: #D6D9FF;
+  --color-violet_blue_300: #ADB2F5;
   --color-violet_blue_400: #848AE2;
   --color-violet_blue_500: #6670E5;
   
@@ -45,6 +58,7 @@ body {
   --color-background-alice-blue: #F9FAFB;
   --color-background-gray-white-bg: #2E2E31;
   --color-background-black: #F3F4F6;
+  --color-background-white: #F9F9F9;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -363,4 +377,157 @@ h1 {
   font-family: "Outfit", sans-serif;
   font-size: 1.1rem;
   font-weight: 600;
+}
+
+/* Modal */
+
+:root {
+  --bg: #ffffff;
+  --text: #1f1f1f;
+  --gray: #bfbfbf;
+  --primary: #005eff;
+  --radius: 0.8rem;
+}
+
+
+
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.4);
+  backdrop-filter: blur(5px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 99;
+}
+
+.modal-content {
+  background: var(--bg);
+  width: 58rem;
+  max-width: 90%;
+  border-radius: var(--radius);
+  padding: 2.4rem;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.modal-close {
+  position: absolute;
+  top: 1.2rem;
+  right: 1.2rem;
+  border: none;
+  background: transparent;
+  font-size: 2rem;
+  cursor: pointer;
+}
+
+.steps-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 1.2rem;
+}
+
+.step-number {
+  width: 2.8rem;
+  height: 2.8rem;
+  border-radius: 50%;
+  background: var(--gray);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  margin-bottom: .4rem;
+  font-size: 1.3rem;
+}
+
+.step.in-progress .step-number {
+  background: var(--primary);
+}
+
+.step.completed .step-number {
+  background: green;
+}
+
+.step-body {
+  display: flex;
+  flex-direction: column;
+  gap: 1.6rem;
+}
+
+.job-card {
+  display: flex;
+  gap: 1.2rem;
+  align-items: center;
+  background: #f8f8f8;
+  padding: 1.4rem;
+  border-radius: var(--radius);
+}
+
+.avatar {
+  width: 4.2rem;
+  height: 4.2rem;
+  border-radius: 50%;
+}
+
+.label {
+  font-size: 1.2rem;
+}
+
+.input-group {
+  display: flex;
+  border: 1px solid #ddd;
+  border-radius: var(--radius);
+  padding: .4rem;
+}
+
+.country {
+  border: none;
+  outline: none;
+  background: transparent;
+  font-size: 1.4rem;
+  padding: .6rem;
+}
+
+input {
+  flex: 1;
+  border: none;
+  outline: none;
+  font-size: 1.4rem;
+  padding: .6rem;
+}
+
+.info-text {
+  font-size: 1.2rem;
+  color: #666;
+}
+
+.modal-footer {
+  display: flex;
+  justify-content: space-between;
+}
+
+.btn-primary {
+  background: var(--primary);
+  color: white;
+  padding: 1.2rem 2.4rem;
+  border-radius: var(--radius);
+  border: none;
+  cursor: pointer;
+}
+
+.btn-secondary {
+  background: #eee;
+  padding: 1.2rem 2.4rem;
+  border-radius: var(--radius);
+  border: none;
+  cursor: pointer;
 }
