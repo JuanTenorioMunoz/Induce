@@ -1,3 +1,4 @@
+import ButtonLink from "../../components/ButtonLink/ButtonLink"
 import InputText from "../../components/Input_text/InputText"
 import Navbar from "../../components/Navbar/Navbar"
 import RectanguleButton from "../../components/Rectangule_button/RectanguleButton"
@@ -16,6 +17,11 @@ const Register = () => {
         text="Sign in with Google"
         >
         </RectanguleButton>
+        <ButtonLink
+        direction="#"
+        text="¿Ya tienes cuenta?"
+        button="Inicia sesión"
+        ></ButtonLink>
         </div>
     )
 }
