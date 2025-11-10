@@ -2,7 +2,7 @@ import InputText from "../../components/Input_text/InputText"
 import Navbar from "../../components/Navbar/Navbar"
 const Register = () => {
     return(
-        <div className="bg-white">
+        <div className="bg-(--color-background-alice-blue">
         <Navbar></Navbar>
         <InputText
         label="Input"
