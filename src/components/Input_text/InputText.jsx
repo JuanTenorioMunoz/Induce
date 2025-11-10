@@ -5,7 +5,7 @@ const InputText = ({label, IconLeft, IconRight, Placeholder}) => {
         <label className="bg-(--color-text-titulos-y-texto-destacado) font-medium">{label}</label>
 
         <div className="flex items-center bg-gray-50 border border-blue-200 rounded-xl px-3 py-2 shadow-sm focus-within:border-blue-400 transition">
-         <i className={`bi bi-${IconLeft}`} />
+         <i className={`bi bi-${IconLeft} text-2xl text-(--color-texto-secundario)`} />
 
         <input
         type="text"
@@ -13,7 +13,7 @@ const InputText = ({label, IconLeft, IconRight, Placeholder}) => {
         className="flex-1 bg-transparent text-lg px-4 outline-none text-(--color-texto-secundario)"
         />
 
-        <i className={`bi bi-${IconRight}`} />
+        <i className={`bi bi-${IconRight} text-(--color-texto-secundario)`} />
         </div>
         </div>
     )};
