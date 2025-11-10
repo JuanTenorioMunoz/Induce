@@ -1,8 +1,8 @@
 const RectanguleButton = ({icon, text}) => {
     return(
-        <button>
-        <i className={`bi bi-${icon} text-2xl`} />
-        <p>{text}</p>
+        <button className="flex flex-row items-center justify-center gap-2 w-76 py-1.5 border-2 rounded-xl">
+        <i className={`bi bi-${icon} box-border`} />
+        <p className="font-medium text-(--color-texto-secundario)">{text}</p>
         </button>
     )
 }
