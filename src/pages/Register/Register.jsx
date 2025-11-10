@@ -1,8 +1,15 @@
+import InputText from "../../components/Input_text/InputText"
 import Navbar from "../../components/Navbar/Navbar"
 const Register = () => {
     return(
         <div className="bg-white">
         <Navbar></Navbar>
+        <InputText
+        label="Input"
+        Placeholder="placeholder"
+        IconLeft="person-fill"
+        IconRight="bi bi-question-circle"
+        ></InputText>
         </div>
     )
 }
