@@ -5,7 +5,10 @@ import RectanguleButton from "../../components/Rectangule_button/RectanguleButto
 import Heading from "../../components/Titule/Titule"
 import RegisterImage from "../../assets/Register-image1.png"
 
+import { useNavigate } from "react-router-dom"
+
 const Register = () => {
+    const navigate = useNavigate();
     return(
         <div className="bg-(--color-background-alice-blue) flex flex-col w-full min-h-screen overflow-y-auto">
             <Navbar></Navbar>
@@ -50,6 +53,7 @@ const Register = () => {
             Placeholder="Escribe tu nueva contraseña"
             ></InputText>
             <button 
+            onClick={() => navigate('/Sign_in')}
             className="text-md cursor-pointer bg-(--color-violet-blue) text-(--color-fondos-oscuros) w-[40%] box-border px-2 py-1 rounded-md"
             >Registrate</button>
             <div className="flex items-center justify-center w-[60%]">
@@ -66,7 +70,7 @@ const Register = () => {
             text="Iniciar sesión con Microsoft"
             ></RectanguleButton>
             <ButtonLink
-            direction="#"
+            direction="/Sign_in"
             text="¿Ya tienes cuenta?"
             button="Inicia sesión"
             ></ButtonLink>
