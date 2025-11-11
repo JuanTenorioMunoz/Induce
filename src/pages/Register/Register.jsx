@@ -24,9 +24,10 @@ const Register = () => {
         text="¿Ya tienes cuenta?"
         button="Inicia sesión"
         ></ButtonLink>
-        <Titule
+        <Heading
         titule="Bienvenido/a a Induce!"
-        ></Titule>
+        subtitule="Explora oportunidades únicas, conecta con empresas y potencia tu futuro desarrollo"
+        ></Heading>
         </div>
     )
 }
