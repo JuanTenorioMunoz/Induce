@@ -19,7 +19,6 @@ const Navbar = () => {
         <ButtonPrimary
         text="Registrarse"
         ></ButtonPrimary>
-
         </div>
         </header>
 )}
