@@ -2,6 +2,8 @@ import ButtonLink from "../../components/ButtonLink/ButtonLink"
 import InputText from "../../components/Input_text/InputText"
 import Navbar from "../../components/Navbar/Navbar"
 import RectanguleButton from "../../components/Rectangule_button/RectanguleButton"
+import Titule from "../../components/Titule/Titule"
+
 const Register = () => {
     return(
         <div className="bg-(--color-background-alice-blue">
@@ -22,6 +24,9 @@ const Register = () => {
         text="¿Ya tienes cuenta?"
         button="Inicia sesión"
         ></ButtonLink>
+        <Titule
+        titule="Bienvenido/a a Induce!"
+        ></Titule>
         </div>
     )
 }
