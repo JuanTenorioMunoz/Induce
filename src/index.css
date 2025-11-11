@@ -47,6 +47,9 @@ body {
   --color-buttons-primary-green-default: #D9F103;
   --color-buttons-primary-green-hover: #E9FF26;
 
+  /*Colores neutrales */
+  --color-gray-300: #D5D7DA;
+  
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
