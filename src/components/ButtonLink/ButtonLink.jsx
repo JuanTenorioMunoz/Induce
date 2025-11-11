@@ -1,6 +1,6 @@
 const ButtonLink = ({direction, text, button}) => {
     return(
-        <div className="flex flex-row w-64 justify-center gap-2">
+        <div className="flex flex-row w-64 text-md justify-center gap-2">
         <p className="text-(--color-elementos-claros)">{text}</p>
         <a 
         href={direction}
