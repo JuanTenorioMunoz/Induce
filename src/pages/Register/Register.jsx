@@ -1,4 +1,5 @@
 import ButtonLink from "../../components/ButtonLink/ButtonLink"
+import ButtonPrimary from "../../components/ButtonPrimary/ButtonPrimary"
 import InputText from "../../components/Input_text/InputText"
 import Navbar from "../../components/Navbar/Navbar"
 import RectanguleButton from "../../components/Rectangule_button/RectanguleButton"
@@ -28,6 +29,10 @@ const Register = () => {
         titule="Bienvenido/a a Induce!"
         subtitule="Explora oportunidades únicas, conecta con empresas y potencia tu futuro desarrollo"
         ></Heading>
+        <ButtonPrimary
+        text="Continuar"
+        >
+        </ButtonPrimary>
         </div>
     )
 }
