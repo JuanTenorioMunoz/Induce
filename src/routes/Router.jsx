@@ -4,7 +4,7 @@ import Home from '../pages/Home/Home';
 import LandingPage from '../pages/LandingPage/LandingPage';
 import Curriculum from './../pages/Curriculum/Curriculum';
 import Register from '../pages/Register/Register';
-
+import SignIn from '../pages/SignIn/SignIn';
 
 const Router = () => {
     return (
@@ -14,7 +14,8 @@ const Router = () => {
                 <Route path="/profile" element={<Profile/>}/>
                 <Route path="/landing" element={<LandingPage/>}/>
                 <Route path="/cv" element={<Curriculum/>}/>
-                <Route path="/Register" element={<Register/>}/>
+                <Route path="/register" element={<Register/>}/>
+                <Route path="/sign_in" element={<SignIn/>}/>
             </Routes>
         </BrowserRouter>
     )
