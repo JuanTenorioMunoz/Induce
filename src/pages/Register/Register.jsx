@@ -2,7 +2,7 @@ import ButtonLink from "../../components/ButtonLink/ButtonLink"
 import InputText from "../../components/Input_text/InputText"
 import Navbar from "../../components/Navbar/Navbar"
 import RectanguleButton from "../../components/Rectangule_button/RectanguleButton"
-import Titule from "../../components/Titule/Titule"
+import Heading from "../../components/Titule/Titule"
 
 const Register = () => {
     return(
