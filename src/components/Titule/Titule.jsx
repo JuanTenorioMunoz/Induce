@@ -1,9 +1,12 @@
-const Titule = ({titule}) => {
+const Heading = ({titule, subtitule}) => {
     return(
-        <p 
-        className="text-5xl font-semibold text-(--color-elementos-claros)"
-        >{titule}</p>
+        <div>
+            <p 
+            className="text-5xl font-semibold text-(--color-elementos-claros)"
+            >{titule}</p>
+            <p>{subtitule}</p>
+        </div>
     )
 }
 
-export default Titule
+export default Heading
