@@ -28,7 +28,7 @@ const Home = () => {
   return (
     <>
     <Sidebar></Sidebar>
-    <ApplicationModal isOpen={true}></ApplicationModal>
+    <ApplicationModal isOpen={false}></ApplicationModal>
       <div className="flex flex-col items-center gap-4 p-6">
         {courses.map((course, index) => (
           <JobCard
