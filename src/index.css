@@ -58,6 +58,10 @@ body {
   height: 100%;
 }
 
+.scroll-hide::-webkit-scrollbar {
+  display: none;
+}
+
 .font-primary {
   font-family: "Mulish", sans-serif;
   font-optical-sizing: auto;

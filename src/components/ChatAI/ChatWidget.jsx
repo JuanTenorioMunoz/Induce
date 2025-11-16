@@ -56,7 +56,7 @@ const ChatWidget = () => {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           chatId,
-          id: 123,
+          id: 84,
           message: msgText,
           route: ChatWidgetConfig.webhook.route,
         }),

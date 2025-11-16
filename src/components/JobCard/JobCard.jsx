@@ -15,6 +15,15 @@ export const JobCard = ({
   tags,
   timeAgo,
 }) => {
+  // Format salary with commas and $
+  const formattedSalary =
+    salary && !isNaN(salary)
+      ? `$${Number(salary).toLocaleString()}`
+      : salary;
+
+  // Get first letter from title
+  const initial = title ? title.charAt(0).toUpperCase() : "G";
+
   return (
     <article
       className="
@@ -42,7 +51,7 @@ export const JobCard = ({
 
       <section className="flex items-start gap-3 mb-3">
         <div className="flex items-center justify-center w-10 h-10 bg-[var(--color-violet_blue)] text-[var(--color-white)] rounded">
-          G
+          {initial}
         </div>
 
         <div className="flex flex-col flex-1">
@@ -69,7 +78,7 @@ export const JobCard = ({
 
           {(level || salary) && (
             <div className="text-sm text-[var(--color-texto_secundario)]">
-              {level} {level && salary && "·"} {salary}
+              {level} {level && salary && "·"} {formattedSalary}
             </div>
           )}
         </div>
@@ -83,7 +92,7 @@ export const JobCard = ({
 
       {tags && tags.length > 0 && (
         <div className="mb-3">
-          <TagList tags={tags} /> 
+          <TagList tags={tags} />
         </div>
       )}
 
