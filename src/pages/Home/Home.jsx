@@ -4,11 +4,13 @@ import JobCard from "../../components/JobCard/JobCard";
 import { fetchAllFromTable } from "../../utils/supabaseUtils";
 import { parseJSON } from "../../utils/utils";
 import Sidebar from "../../components/Sidebar/Sidebar";
-import ProfileSummary from './../../components/ProfileSummary/ProfileSummary';
+import ProfileSummary from "../../components/ProfileSummary/ProfileSummary";
 import JobInfo from "../../components/JobInfo/JobInfo";
+import JobDetailModal from "../../components/JobDetailModal/JobDetailPanel";
 
 const Home = () => {
   const [courses, setCourses] = useState([]);
+  const [selectedJob, setSelectedJob] = useState(null);
 
   useEffect(() => {
     const loadCourses = async () => {
@@ -24,29 +26,47 @@ const Home = () => {
   }, []);
 
   return (
-    <>
-    <div className="flex flex-row">
-      <Sidebar></Sidebar>
-      <div className="flex flex-col items-center gap-4 p-6">
-        {courses.map((course, index) => (
-          <JobCard
-            key={index}
-            title={course.title}
-            company={course.company}
-            level={course.level}
-            salary={course.salary}
-            description={course.description}
-            tags={parseJSON(course.skills)}
-            timeAgo={course.timeAgo}
-            recommended={course.recommended}
-            match={course.match}
-          />
-        ))}
-      </div>
-      </div>
-      <ProfileSummary></ProfileSummary>
+    <div id="root" className="min-h-screen">
+      <Sidebar />
+
+      {/* Main column */}
+      <main className="flex-1 min-w-0 px-6 py-6 overflow-y-auto">
+
+        <div className="flex flex-col items-center gap-4">
+          {courses.map((course, index) => (
+            <JobCard
+              key={index}
+              title={course.title}
+              company={course.company}
+              level={course.level}
+              salary={course.salary}
+              description={course.description}
+              tags={parseJSON(course.skills)}
+              timeAgo={course.timeAgo}
+              recommended={course.recommended}
+              match={course.match}
+              onClick={() =>
+                setSelectedJob({
+                  ...course,
+                  tags: parseJSON(course.skills) || [],
+                })
+              }
+            />
+          ))}
+        </div>
+      </main>
+
+      {/* RIGHT PANEL */}
+      <aside className="flex-none w-[340px] min-w-0 border-l border-gray-200 overflow-y-auto">
+        {selectedJob ? (
+          <JobDetailModal job={selectedJob} onClose={() => setSelectedJob(null)} />
+        ) : (
+          <ProfileSummary />
+        )}
+      </aside>
+
       <ChatWidget />
-    </>
+    </div>
   );
 };
 
