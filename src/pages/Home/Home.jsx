@@ -6,7 +6,7 @@ import { parseJSON } from "../../utils/utils";
 import Sidebar from "../../components/Sidebar/Sidebar";
 import ProfileSummary from "../../components/ProfileSummary/ProfileSummary";
 import JobInfo from "../../components/JobInfo/JobInfo";
-import JobDetailModal from "../../components/JobDetailModal/JobDetailPanel";
+import JobDetailPanel from "../../components/JobDetailPanel/JobDetailPanel";
 
 const Home = () => {
   const [courses, setCourses] = useState([]);
@@ -57,9 +57,9 @@ const Home = () => {
       </main>
 
       {/* RIGHT PANEL */}
-      <aside className="flex-none w-[340px] min-w-0 border-l border-gray-200 overflow-y-auto">
+      <aside className="flex-none w-[30vw] min-w-0 border-l border-gray-200 overflow-y-auto">
         {selectedJob ? (
-          <JobDetailModal job={selectedJob} onClose={() => setSelectedJob(null)} />
+          <JobDetailPanel job={selectedJob} onClose={() => setSelectedJob(null)} />
         ) : (
           <ProfileSummary />
         )}

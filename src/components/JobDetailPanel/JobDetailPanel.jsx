@@ -3,7 +3,7 @@ import saveIcon from "../../assets/save.svg";
 import verified from "../../assets/verified.svg";
 import TagList from "../Tag/Taglist";
 
-const JobDetailModal = ({ job, onClose }) => {
+const JobDetailPanel = ({ job, onClose }) => {
   const [showBanner, setShowBanner] = useState(true);
   if (!job) return null;
 
@@ -11,7 +11,7 @@ const JobDetailModal = ({ job, onClose }) => {
     <div
       className="
         w-full
-        max-w-[22vw]            /* escalable según pantalla */
+                    /* escalable según pantalla */
         min-w-[300px]
         h-screen
         bg-[var(--color-alice_blue)]
@@ -80,6 +80,23 @@ const JobDetailModal = ({ job, onClose }) => {
           <TagList tags={job.skills} />
         )}
 
+        {/* Botones finales */}
+      <div className="flex mt-4">
+        <button
+          onClick={() => alert("Aplicar")}
+          className="w-100 py-0 mr-5 px-0 bg-[var(--color-chartreuse)] rounded-lg font-semibold text-sm text-[var(--color-violet_blue)] hover:brightness-95"
+        >
+          Postularme
+        </button>
+
+        <button
+          onClick={() => alert("Guardado")}
+          className="mt-0 w-full py-1 rounded-lg text-sm font-semibold border border-[var(--color-texto_secundario)] hover:bg-gray-100"
+        >
+          Guardar
+        </button>
+      </div>
+
         {/* Fecha límite (lo inventamos por ahora con end_date) */}
         <div>
           <h3 className="font-semibold text-[0.9rem] mb-1">Fecha límite</h3>
@@ -110,24 +127,9 @@ const JobDetailModal = ({ job, onClose }) => {
 
       </div>
 
-      {/* Botones finales */}
-      <div className="mt-4">
-        <button
-          onClick={() => alert("Aplicar")}
-          className="w-full py-2 bg-[var(--color-chartreuse)] rounded-lg font-semibold text-sm text-[var(--color-violet_blue)] hover:brightness-95"
-        >
-          Postularme
-        </button>
-
-        <button
-          onClick={() => alert("Guardado")}
-          className="mt-2 w-full py-2 rounded-lg text-sm font-semibold border border-[var(--color-texto_secundario)] hover:bg-gray-100"
-        >
-          Guardar
-        </button>
-      </div>
+      
     </div>
   );
 };
 
-export default JobDetailModal;
+export default JobDetailPanel;
