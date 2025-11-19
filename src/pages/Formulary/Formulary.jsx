@@ -2,6 +2,7 @@ import Heading from "../../components/Titule/Titule";
 import InputText from "../../components/Input_text/InputText";
 import logoInduce from "../../assets/Logo_induce.png";
 import ButtonPrimary from "../../components/ButtonPrimary/ButtonPrimary";
+import Input_file_image from "../../assets/Input_file_image.png"
 
 import { useState } from "react";
 
@@ -10,7 +11,7 @@ const Formulary = () => {
     {
       step: "1 de 4",
       title:
-        "!Bienvenido/a a Induce! Nos alegra que formes parte de nuestra comunidad.",
+        "¡Bienvenido/a a Induce! Nos alegra que formes parte de nuestra comunidad.",
       subtitule:
         "Explora oportunidades únicas, conecta con empresas y potencian tu desarrollo profesional",
       description:
@@ -121,7 +122,7 @@ const Formulary = () => {
       </header>
 
       <div className="flex flex-col justify-center items-center h-screen gap-10">
-        <div className="flex flex-col w-1/2 gap-10">
+        <div className="flex flex-col p-5 items-center gap-5 min-h-[50vh] w-screen max-w-[800px]">
           <Heading titule={step.title} subtitule={step.subtitule}></Heading>
           <div className="flex flex-col p-5 items-center gap-5 bg-(--color-alice-blue) min-h-[50vh] w-[90vw] max-w-[600px] shadow-sm">
             <div className="w-full flex flex-row text-xs justify-end">
@@ -140,14 +141,15 @@ const Formulary = () => {
               return (
                 <div
                   key={field.name}
-                  className="w-full flex flex-col items-start"
+                  className="w-full flex flex-col items-center"
                 >
                   {isFile ? (
                     <>
-                      <label className="text-sm mb-1">{field.label}</label>
-
                       <label className="w-full cursor-pointer">
-                        <div className="border border-gray-300 rounded-lg p-4 bg-white flex flex-col">
+                        <div className="border border-gray-300 gap-3 rounded-lg p-4 bg-white flex flex-col items-center">
+                          <img 
+                          className="w-48 h-48"
+                          src={Input_file_image}></img>
                           <span className="text-base font-semibold text-gray-700 leading-normal min-h-5 block">
                             Haz clic o arrastra tu imagen aquí
                           </span>
