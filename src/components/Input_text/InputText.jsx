@@ -1,5 +1,5 @@
 
-const InputText = ({label, IconLeft, IconRight, Placeholder}) => {
+const InputText = ({ label, IconLeft, IconRight, Placeholder, onChange, value }) => {
     return(
         <div className="flex flex-col gap-1 w-[70%]">
         <label className="bg-(--color-text-titulos-y-texto-destacado) text-xs">{label}</label>
@@ -11,6 +11,8 @@ const InputText = ({label, IconLeft, IconRight, Placeholder}) => {
         type="text"
         placeholder={Placeholder}
         className="flex-1 bg-transparent text-xs px-2 outline-none text-(--color-texto-secundario)"
+        onChange={onChange}
+        value={value ?? ""}
         />
 
         <i className={`bi bi-${IconRight} text-(--color-texto-secundario)`} />
