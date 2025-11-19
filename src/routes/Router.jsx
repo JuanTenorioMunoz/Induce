@@ -5,6 +5,7 @@ import LandingPage from '../pages/LandingPage/LandingPage';
 import Curriculum from './../pages/Curriculum/Curriculum';
 import Register from '../pages/Register/Register';
 import SignIn from '../pages/SignIn/SignIn';
+import Formulary from '../pages/Formulary/Formulary';
 
 const Router = () => {
     return (
@@ -16,6 +17,7 @@ const Router = () => {
                 <Route path="/cv" element={<Curriculum/>}/>
                 <Route path="/register" element={<Register/>}/>
                 <Route path="/sign_in" element={<SignIn/>}/>
+                <Route path="/Formulary" element={<Formulary/>}></Route>
             </Routes>
         </BrowserRouter>
     )
