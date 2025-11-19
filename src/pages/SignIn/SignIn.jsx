@@ -38,7 +38,7 @@ const SignIn = () => {
             <div className="flex flex-row justify-between items-center w-8/12 my-2">
             <a href="#" className="underline text-xs text-(--color-elementos-claros)">¿Olvidaste tu contraseña?</a>
             <button 
-            onClick={() => navigate('/landing')}
+            onClick={() => navigate('/Formulary')}
             className="text-md cursor-pointer bg-(--color-violet-blue) text-(--color-fondos-oscuros) w-[40%] box-border px-2 py-1 rounded-md"
             >Iniciar sesión</button>
             </div>
