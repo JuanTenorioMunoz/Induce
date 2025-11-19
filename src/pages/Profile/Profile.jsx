@@ -9,7 +9,7 @@ const Profile = () => {
 
       <div className="flex flex-col h-screen w-[80%] p-4 gap-4">
 
-        <div className="f-lex flex-row items-center justify-between w-full py-4">
+        <div className="flex flex-row items-center justify-between w-full py-4">
           <p className="font-bold text-2xl text-(--color-violet-blue)">
             Mi perfil
           </p>
@@ -20,7 +20,7 @@ const Profile = () => {
           />
         </div>
 
-        <div className="w-full h-[25%] rounded-2xl px-4 border border-(--color-violet-blue-200)">
+        <div className="w-full h-[25%] rounded-2xl px-4 bg-(--color-alice-blue) shadow-sm">
           <AvatarCard
             image="https://i.pinimg.com/1200x/f8/93/c7/f893c7e1abe5b076eaee7c58223329e5.jpg"
             name="Ana María Muñoz"
