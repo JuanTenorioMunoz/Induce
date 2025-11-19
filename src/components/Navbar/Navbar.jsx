@@ -5,7 +5,7 @@ const Navbar = () => {
         <header className="w-full h-16 shadow-sm flex items-center justify-between px-12 bg-(--color-alice-blue)">
 
         <div className="flex items-center space-x-2">
-            <div className="h-6 w-auto">
+            <div className="h-8 w-auto">
             <img src={logoInduce} alt="Logo Induce" className="h-full w-auto" />
             </div>
         </div>
