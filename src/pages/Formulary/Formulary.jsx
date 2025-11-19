@@ -95,11 +95,15 @@ const Formulary = () => {
   const handleChange = (name, value) => {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
-
-  const canContinue = stepsData[currentStep].fields.every(
-    (field) => formData[field.name]?.trim()?.length > 0
-  );
-
+//agregue esto para que me dejara continuar
+  const canContinue = step.fields.every((field) => {
+    const value = formData[field.name];
+    if (field.type === "file") {
+      return Boolean(value);
+    }
+    return typeof value === "string" && value.trim().length > 0;
+  });
+// hasta aqui 
   const handleNext = () => {
     if (!canContinue) {
       const newTouched = {};
