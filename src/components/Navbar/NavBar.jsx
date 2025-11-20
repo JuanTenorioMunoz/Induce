@@ -1,62 +1,48 @@
 import React from "react";
-import { IoNotificationsOutline } from "react-icons/io5";
 
-const Navbar = ({ title = "Inicio", user }) => {
+
+const NavBar = ({ title = "Inicio", user }) => {
   return (
-    <header className="
-      w-full 
-      flex items-center justify-between 
-      px-8 py-6 
-      bg-white
-    ">
-      
-      {/* LEFT – PAGE TITLE */}
-      <h1 className="
-        font-outfit 
-        text-[1.9rem] 
-        font-semibold 
-        text-[var(--color-violet_blue)]
-      ">
-        {title}
-      </h1>
-
-      {/* RIGHT – USER INFO */}
+    <header className="w-full flex items-center justify-between px-6 py-4 border-b bg-white">
       <div className="flex items-center gap-6">
-        
-        {/* Notification icon */}
-        <button className="
-          w-10 h-10 
-          rounded-full 
-          flex items-center justify-center
-          hover:bg-gray-100 transition
-          text-[var(--color-violet_blue)]
-        ">
-          <IoNotificationsOutline size={22} />
+        <h2 className="font-outfit text-2xl text-[var(--color-texto-titulos_y_destacado)]">
+          {title}
+        </h2>
+      </div>
+
+      <div className="flex items-center gap-4">
+        <button
+          aria-label="Notificaciones"
+          className="w-10 h-10 rounded-full flex items-center justify-center hover:bg-[var(--color-violet_blue_100)]"
+        >
+          {/* <IoNotificationsOutline className="text-[var(--color-violet_blue)]" /> */}
         </button>
 
-        {/* USER INFO */}
-        <div className="flex items-center gap-3 p-2 px-3 rounded-full hover:bg-gray-100 cursor-pointer transition">
-          <img
-            src={user?.avatar}
-            alt="user"
-            className="w-10 h-10 rounded-full object-cover"
-          />
+        <div className="flex items-center gap-3">
+          {user?.avatar ? (
+            <img
+              src={user.avatar}
+              alt={user.name}
+              className="w-10 h-10 rounded-full object-cover border-2 border-[var(--color-chartreuse)]"
+            />
+          ) : (
+            <div className="w-10 h-10 rounded-full bg-[var(--color-violet_blue)] flex items-center justify-center text-white">
+              {user?.name?.charAt(0)}
+            </div>
+          )}
 
-          <div className="flex flex-col leading-tight">
-            <span className="font-semibold text-[var(--color-texto_principal)]">
+          <div className="text-right">
+            <div className="text-sm font-medium text-[var(--color-texto-principal)]">
               {user?.name}
-            </span>
-            <span className="text-xs text-[var(--color-texto_secundario)]">
+            </div>
+            <div className="text-xs text-[var(--color-texto_secundario)]">
               {user?.role}
-            </span>
+            </div>
           </div>
-
-          {/* Arrow */}
-          <span className="text-[var(--color-violet_blue)] text-lg">▾</span>
         </div>
       </div>
     </header>
   );
 };
 
-export default Navbar;
+export default NavBar;
