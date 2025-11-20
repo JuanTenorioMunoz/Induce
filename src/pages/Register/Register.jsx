@@ -7,7 +7,7 @@ import RegisterImage from "../../assets/Register-image1.png"
 
 import { useNavigate } from "react-router-dom"
 import { useState } from "react"
-import { signUpUser } from "../../utils/supabaseUtils"
+import { signUpUser, ensureProfileForCurrentUser } from "../../utils/supabaseUtils"
 
 const Register = () => {
     const navigate = useNavigate();
@@ -32,6 +32,7 @@ const Register = () => {
         setLoading(true)
         try {
             await signUpUser(email, password)
+            await ensureProfileForCurrentUser({ name: username })
             navigate('/Formulary')
         } catch (e) {
             setError(e.message || 'Error al registrarse')
