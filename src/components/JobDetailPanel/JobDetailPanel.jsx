@@ -2,16 +2,20 @@ import React, { useState } from "react";
 import saveIcon from "../../assets/save.svg";
 import verified from "../../assets/verified.svg";
 import TagList from "../Tag/Taglist";
+import ApplicationModal from "../ApplicationModal/ApplicationModal";
 
 const JobDetailPanel = ({ job, onClose }) => {
   const [showBanner, setShowBanner] = useState(true);
+
+  // ← ESTADO PARA EL MODAL (AÑADIDO)
+  const [isApplicationOpen, setIsApplicationOpen] = useState(false);
+
   if (!job) return null;
 
   return (
     <div
       className="
         w-full
-                    /* escalable según pantalla */
         min-w-[300px]
         h-screen
         bg-[var(--color-alice_blue)]
@@ -22,6 +26,13 @@ const JobDetailPanel = ({ job, onClose }) => {
         pl-[1vw]
       "
     >
+
+      {/* ← MODAL DE POSTULACIÓN */}
+      <ApplicationModal 
+        isOpen={isApplicationOpen} 
+        onClose={() => setIsApplicationOpen(false)} 
+      />
+
       {/* HEADER */}
       <div className="flex items-start justify-between mb-6 w-full">
         <div className="flex items-center gap-3">
@@ -75,29 +86,32 @@ const JobDetailPanel = ({ job, onClose }) => {
         className="overflow-y-auto pr-2 pb-10 space-y-6"
         style={{ height: "calc(100vh - 240px)" }}
       >
+
         {/* SKILLS */}
         {job.skills && job.skills.length > 0 && (
           <TagList tags={job.skills} />
         )}
 
         {/* Botones finales */}
-      <div className="flex mt-4">
-        <button
-          onClick={() => alert("Aplicar")}
-          className="w-100 py-0 mr-5 px-0 bg-[var(--color-chartreuse)] rounded-lg font-semibold text-sm text-[var(--color-violet_blue)] hover:brightness-95"
-        >
-          Postularme
-        </button>
+        <div className="flex mt-4">
 
-        <button
-          onClick={() => alert("Guardado")}
-          className="mt-0 w-full py-1 rounded-lg text-sm font-semibold border border-[var(--color-texto_secundario)] hover:bg-gray-100"
-        >
-          Guardar
-        </button>
-      </div>
+          {/* ← CAMBIADO PARA ABRIR EL MODAL */}
+          <button
+            onClick={() => setIsApplicationOpen(true)}
+            className="w-100 py-0 mr-5 px-0 bg-[var(--color-chartreuse)] rounded-lg font-semibold text-sm text-[var(--color-violet_blue)] hover:brightness-95"
+          >
+            Postularme
+          </button>
 
-        {/* Fecha límite (lo inventamos por ahora con end_date) */}
+          <button
+            onClick={() => alert("Guardado")}
+            className="mt-0 w-full py-1 rounded-lg text-sm font-semibold border border-[var(--color-texto_secundario)] hover:bg-gray-100"
+          >
+            Guardar
+          </button>
+        </div>
+
+        {/* Fecha límite */}
         <div>
           <h3 className="font-semibold text-[0.9rem] mb-1">Fecha límite</h3>
           <p className="text-xs text-[var(--color-texto_secundario)]">
@@ -124,10 +138,7 @@ const JobDetailPanel = ({ job, onClose }) => {
             {job.description}
           </p>
         </div>
-
       </div>
-
-      
     </div>
   );
 };
