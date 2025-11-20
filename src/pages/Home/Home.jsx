@@ -16,6 +16,12 @@ import ApplicationModal from "../../components/ApplicationModal/ApplicationModal
 
 const Home = () => {
 
+  const userMock = {
+  name: "Ana María Muñoz",
+  role: "Diseñadora UX/UI",
+  avatar: "https://i.imgur.com/2yaf2wb.jpeg"
+};
+
   const [courses, setCourses] = useState([]);
   const [selectedJob, setSelectedJob] = useState(null);
 
