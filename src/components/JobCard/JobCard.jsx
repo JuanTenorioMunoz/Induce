@@ -93,7 +93,7 @@ const JobCard = ({
       {tags && tags.length > 0 && (
         <div className="mb-3">
           <TagList tags={tags} />
-          <TagList tags={tags} />
+        
         </div>
       )}
 
