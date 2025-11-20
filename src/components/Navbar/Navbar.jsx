@@ -1,26 +1,48 @@
-import logoInduce from "../../assets/Logo_induce.png";
-import ButtonPrimary from "../ButtonPrimary/ButtonPrimary";
-const Navbar = () => {
-    return (
-        <header className="w-full h-16 shadow-sm flex items-center justify-between px-12 bg-(--color-alice-blue)">
+import React from "react";
 
-        <div className="flex items-center space-x-2">
-            <div className="h-8 w-auto">
-            <img src={logoInduce} alt="Logo Induce" className="h-full w-auto" />
+
+const NavBar = ({ title = "Inicio", user }) => {
+  return (
+    <header className="w-full flex items-center justify-between px-6 py-4 border-b bg-white">
+      <div className="flex items-center gap-6">
+        <h2 className="font-outfit text-2xl text-[var(--color-texto-titulos_y_destacado)]">
+          {title}
+        </h2>
+      </div>
+
+      <div className="flex items-center gap-4">
+        <button
+          aria-label="Notificaciones"
+          className="w-10 h-10 rounded-full flex items-center justify-center hover:bg-[var(--color-violet_blue_100)]"
+        >
+          {/* <IoNotificationsOutline className="text-[var(--color-violet_blue)]" /> */}
+        </button>
+
+        <div className="flex items-center gap-3">
+          {user?.avatar ? (
+            <img
+              src={user.avatar}
+              alt={user.name}
+              className="w-10 h-10 rounded-full object-cover border-2 border-[var(--color-chartreuse)]"
+            />
+          ) : (
+            <div className="w-10 h-10 rounded-full bg-[var(--color-violet_blue)] flex items-center justify-center text-white">
+              {user?.name?.charAt(0)}
             </div>
-        </div>
+          )}
 
-        <div className="flex flex-row gap-5">
-        <nav className="hidden md:flex items-center space-x-10 text-lg">
-            <a href="#" className="text-sm text-(--color-elementos-claros) font-medium transition-colors">Home</a>
-            <a href="#" className="text-sm text-(--color-elementos-claros) font-medium transition-colors">Vacantes</a>
-            <a href="#" className="text-sm text-(--color-elementos-claros) font-medium transition-colors">Sobre Nosotros</a>
-        </nav>
-        <ButtonPrimary
-        text="Registrarse"
-        ></ButtonPrimary>
+          <div className="text-right">
+            <div className="text-sm font-medium text-[var(--color-texto-principal)]">
+              {user?.name}
+            </div>
+            <div className="text-xs text-[var(--color-texto_secundario)]">
+              {user?.role}
+            </div>
+          </div>
         </div>
-        </header>
-)}
+      </div>
+    </header>
+  );
+};
 
-export default Navbar
+export default NavBar;
