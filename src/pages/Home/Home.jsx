@@ -9,6 +9,7 @@ import JobInfo from "../../components/JobInfo/JobInfo";
 import JobDetailPanel from "../../components/JobDetailPanel/JobDetailPanel";
 import WelcomeBanner from "../../components/WelcomeBanner/WelcomeBanner";
 import Navbar from "../../components/Navbar/NavBar";
+import JobCardCompressed from "../../components/JobCard/JobCardCompressed";
 
 
 import JobApplicationModal from "../../components/ApplicationModal/ApplicationModal";
@@ -40,16 +41,19 @@ const Home = () => {
     loadCourses();
   }, []);
 
+  // 🔥 Simulación de "vistos recientemente"
+  const recentlyViewed = courses.slice(0, 6); // por ahora inventado
+
   return (
     <div id="root" className="flex min-h-screen">
 
       {/* LEFT SIDEBAR */}
       <Sidebar />
 
-      {/* RIGHT SIDE - EVERYTHING EXCEPT SIDEBAR */}
+      {/* RIGHT SIDE */}
       <div className="flex flex-col flex-1 min-h-screen">
 
-        {/* NAVBAR ARRIBA DE TODO */}
+        {/* NAVBAR */}
         <Navbar title="Inicio" user={userMock} />
 
         {/* MODAL */}
@@ -58,39 +62,76 @@ const Home = () => {
           onClose={() => setIsApplicationOpen(false)}
         />
 
-        {/* MAIN LAYOUT: CONTENT + JOB PANEL */}
-        <div className="flex flex-row flex-1">
+        {/* MAIN CONTENT + PANEL */}
+        <div className="flex flex-row flex-1 overflow-hidden">
 
           {/* MAIN CONTENT */}
-          <main className="flex-1 px-6 py-6 overflow-y-auto">
+          <main className="flex-1 px-6 py-6">
+
             <WelcomeBanner name="Ana" />
 
-            <h1 className="font-outfit text-[var(--color-texto-titulos_y_destacado)] text-3xl mb-4">
-              Recomendaciones de empleo
-            </h1>
+            {/* === RECOMENDACIONES === */}
+            <div className="flex items-center justify-between mt-6 mb-2">
+              <h1 className="font-outfit text-[var(--color-texto-titulos_y_destacado)] text-2xl">
+                Recomendaciones en empleo
+              </h1>
 
-            <div className="flex flex-col items-center gap-4">
-              {courses.map((course, index) => (
+              <button className="text-sm text-green-600 hover:underline">
+                Ver más
+              </button>
+            </div>
+
+            {/* recomendación única */}
+            <div className="flex flex-col items-center gap-4 mb-10">
+              {courses.length > 0 && (
                 <JobCard
-                  key={index}
-                  title={course.title}
-                  company={course.company}
-                  level={course.level}
-                  salary={course.salary}
-                  description={course.description}
-                  tags={parseJSON(course.skills)}
-                  timeAgo={course.timeAgo}
-                  recommended={course.recommended}
-                  match={course.match}
+                  title={courses[0].title}
+                  company={courses[0].company}
+                  level={courses[0].level}
+                  salary={courses[0].salary}
+                  description={courses[0].description}
+                  tags={parseJSON(courses[0].skills)}
+                  timeAgo={courses[0].timeAgo}
+                  recommended={courses[0].recommended}
+                  match={courses[0].match}
                   onClick={() =>
                     setSelectedJob({
-                      ...course,
-                      tags: parseJSON(course.skills) || [],
+                      ...courses[0],
+                      tags: parseJSON(courses[0].skills) || [],
                     })
                   }
                 />
-              ))}
+              )}
             </div>
+
+            {/* === VISTAS RECIENTES === */}
+            <div className="flex items-center justify-between mt-4 mb-2">
+              <h2 className="font-outfit text-[var(--color-texto-titulos_y_destacado)] text-xl">
+                Vistas recientes
+              </h2>
+
+              <button className="text-sm text-green-600 hover:underline">
+                Ver más
+              </button>
+            </div>
+
+            {/* lista scrollable independiente */}
+            <div
+              className="overflow-y-auto pr-2"
+              style={{ maxHeight: "46vh" }}
+            >
+              <div className="flex flex-col items-center gap-4">
+                {courses.map((course, index) => (
+                  <JobCardCompressed
+                    key={`recent-${index}`}
+                    title={course.title}
+                    company={course.company}
+                    timeAgo={course.timeAgo || "Hace 2 días"}
+                  />
+                ))}
+              </div>
+            </div>
+
           </main>
 
           {/* RIGHT PANEL */}
@@ -114,5 +155,4 @@ const Home = () => {
 };
 
 export default Home;
-
 

@@ -7,9 +7,10 @@ export const JobCardCompressed = ({ title, company, timeAgo }) => {
     <article
       className="
         flex items-center justify-between
-        w-full max-w-[675px] p-4 
+        w-full max-w-[100%] p-4 
         bg-[var(--color-alice_blue)] rounded-lg font-primary
         shadow-[var(--shadow-sm)]
+        m-1
       "
     >
       {/* Left section: logo + job info */}
