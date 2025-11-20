@@ -24,10 +24,10 @@ const Vacantes = () => {
   }, []);
 
   return (
-    <>
+    <><Sidebar />
       <div className="flex flex-row">
-        <Sidebar />
-        <div className="flex flex-col items-center gap-3 p-6 w-full overflow-y-auto">
+       
+        <div className="flex flex-col items-center gap-7 p-6 w-full overflow-y-auto scroll-hide">
           {jobs.map((job, index) => (
             <JobCardCompressed
               key={index}

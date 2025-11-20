@@ -78,6 +78,10 @@ body {
   overflow: hidden; /* ← elimínalo */
 }
 
+.scroll-hide::-webkit-scrollbar {
+  display: none;
+}
+
 .font-primary {
   font-family: "Mulish", sans-serif;
   font-optical-sizing: auto;
