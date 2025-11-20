@@ -54,7 +54,7 @@ const ChatAI = () => {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           chatId,
-          id: 84,
+          id: 24,
           message: msgText,
           route: ChatWidgetConfig.webhook.route,
         }),
