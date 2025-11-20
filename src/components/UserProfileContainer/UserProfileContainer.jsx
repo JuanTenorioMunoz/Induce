@@ -1,6 +1,6 @@
 const UserProfileContainer = ({ image, name, label }) => {
   return (
-    <div className="inline-flex w-64 space-x-3 h-12 items-center">
+    <div className="inline-flex w-64 space-x-3 h-6 items-center">
       <i className="bi bi-bell text-lg text-(--color-violet-blue)"></i>
       <div className="w-12 h-12 rounded-full overflow-hidden shrink-0">
         <img
