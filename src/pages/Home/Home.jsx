@@ -10,6 +10,7 @@ import JobDetailPanel from "../../components/JobDetailPanel/JobDetailPanel";
 import WelcomeBanner from "../../components/WelcomeBanner/WelcomeBanner";
 import Navbar from "../../components/Navbar/NavBar";
 import JobCardCompressed from "../../components/JobCard/JobCardCompressed";
+import EmptyJobPanel from "../../components/EmptyJobPanel/EmptyJobPanel";
 
 
 import JobApplicationModal from "../../components/ApplicationModal/ApplicationModal";
@@ -24,11 +25,11 @@ const Home = () => {
 
   const [courses, setCourses] = useState([]);
   const [selectedJob, setSelectedJob] = useState(null);
-  
-  // control de vista
-  const [view, setView] = useState("dashboard"); // "dashboard" | "allJobs"
 
-  // modal
+  // dashboard | allJobs | recent
+  const [view, setView] = useState("dashboard");
+
+  // Modal
   const [isApplicationOpen, setIsApplicationOpen] = useState(false);
 
   useEffect(() => {
@@ -47,7 +48,7 @@ const Home = () => {
   // Recomendado (solo 1)
   const recommendedJob = courses[0];
 
-  // Vistos recientes (todos)
+  // Vistos recientes (todos menos el primero)
   const recentJobs = courses.slice(1);
 
   return (
@@ -60,7 +61,16 @@ const Home = () => {
       <div className="flex flex-col flex-1 min-h-screen">
 
         {/* NAVBAR */}
-        <Navbar title="Inicio" user={userMock} />
+        <Navbar
+          title={
+            view === "dashboard"
+              ? "Inicio"
+              : view === "allJobs"
+              ? "Recomendaciones de empleo"
+              : "Vistas recientes"
+          }
+          user={userMock}
+        />
 
         {/* MODAL */}
         <ApplicationModal
@@ -79,13 +89,16 @@ const Home = () => {
                 <WelcomeBanner name="Ana" />
 
                 {/* RECOMENDADOS */}
-                <div className="w-full max-w-[100%] flex justify-between items-center mt-4 mb-4">
+                <div className="w-full flex justify-between items-center mt-4 mb-4">
                   <h2 className="font-outfit text-xl font-bold">
                     Recomendaciones de empleo
                   </h2>
 
-                  <button 
-                    onClick={() => setView("allJobs")}
+                  <button
+                    onClick={() => {
+                      setView("allJobs");
+                      setSelectedJob(null);
+                    }}
                     className="text-green-600 text-sm underline"
                   >
                     Ver más
@@ -114,13 +127,16 @@ const Home = () => {
                 )}
 
                 {/* VISTAS RECIENTES */}
-                <div className="w-full max-w-[100%] flex justify-between items-center mt-10 mb-4">
+                <div className="w-full flex justify-between items-center mt-10 mb-4">
                   <h2 className="font-outfit text-xl font-bold">
                     Vistas recientes
                   </h2>
 
-                  <button 
-                    onClick={() => setView("allJobs")}
+                  <button
+                    onClick={() => {
+                      setView("recent");
+                      setSelectedJob(null);
+                    }}
                     className="text-green-600 text-sm underline"
                   >
                     Ver más
@@ -128,27 +144,30 @@ const Home = () => {
                 </div>
 
                 {/* SCROLL SOLO EN ESTA SECCIÓN */}
-                <div className="flex flex-col gap-4 max-h-[300px] overflow-y-auto pr-2">
+                <div className="flex flex-col gap-4 max-h-[300px] overflow-y-auto pr-2 overflow-x-hidden">
                   {recentJobs.map((job, index) => (
                     <JobCardCompressed
                       key={index}
                       title={job.title}
                       company={job.company}
                       timeAgo={job.timeAgo}
+                      onClick={() =>
+                        setSelectedJob({
+                          ...job,
+                          tags: parseJSON(job.skills) || [],
+                        })
+                      }
                     />
                   ))}
                 </div>
               </>
             )}
 
-            {/* -------- VISTA VER MÁS -------- */}
+            {/* -------- VISTA RECOMENDACIONES (VER MÁS) -------- */}
             {view === "allJobs" && (
               <>
                 {/* BÚSQUEDA */}
-                <div className="w-full max-w-[100%] mb-6">
-                  <h1 className="text-2xl font-outfit font-bold mb-4">
-                    Recomendaciones de empleo
-                  </h1>
+                <div className="w-full mb-6">
 
                   <input
                     type="text"
@@ -177,7 +196,7 @@ const Home = () => {
 
                 {/* LISTA COMPLETA (SCROLL PROPIO) */}
                 <div className="
-                  flex flex-col gap-4 max-w-[100%] 
+                  flex flex-col gap-4 
                   max-h-[calc(100vh-260px)] 
                   overflow-y-auto pr-2
                 ">
@@ -205,19 +224,56 @@ const Home = () => {
               </>
             )}
 
+            {/* -------- VISTA VISTAS RECIENTES (VER MÁS) -------- */}
+            {view === "recent" && (
+              <>
+                <div className="
+                  flex flex-col gap-5
+                  max-h-[calc(100vh)]
+                  overflow-y-auto
+                  pr-3
+                ">
+                  {recentJobs.map((job, index) => (
+                    <JobCardCompressed
+                      key={index}
+                      title={job.title}
+                      company={job.company}
+                      timeAgo={job.timeAgo}
+                      onClick={() =>
+                        setSelectedJob({
+                          ...job,
+                          tags: parseJSON(job.skills) || [],
+                        })
+                      }
+                    />
+                  ))}
+                </div>
+              </>
+            )}
+
           </main>
 
           {/* PANEL DERECHO */}
-          <aside className="w-[30vw] min-w-[280px] border-l border-gray-200">
-            {selectedJob ? (
+          <aside className="w-[30vw] min-w-[280px] border-l border-gray-200 bg-white">
+
+            {/* SI HAY UN JOB SELECCIONADO */}
+            {selectedJob && (
               <JobDetailPanel
                 job={selectedJob}
                 onClose={() => setSelectedJob(null)}
                 onApply={() => setIsApplicationOpen(true)}
               />
-            ) : (
-              <ProfileSummary />
             )}
+
+            {/* SI NO HAY JOB SELECCIONADO */}
+            {!selectedJob && (
+              <>
+                {view === "recent" && <EmptyJobPanel />}
+                {view === "dashboard" && <ProfileSummary />}
+                {view === "allJobs" && <ProfileSummary />}
+              </>
+            )}
+
           </aside>
 
         </div>

@@ -2,21 +2,22 @@ import React from "react";
 import verified from "../../assets/verified.svg";
 import saveIcon from "../../assets/save.svg";
 
-export const JobCardCompressed = ({ title, company, timeAgo }) => {
+export const JobCardCompressed = ({ title, company, timeAgo, onClick }) => {
   return (
     <article
+      onClick={onClick}
       className="
         flex items-center justify-between
         w-full max-w-[100%] p-4 
         bg-[var(--color-alice_blue)] rounded-lg font-primary
         shadow-[var(--shadow-sm)]
-        m-1
+        m-1 cursor-pointer
       "
     >
       {/* Left section: logo + job info */}
       <div className="flex items-center gap-4">
         <div className="flex items-center justify-center w-11 h-11 bg-[var(--color-violet_blue)] text-[var(--color-white)] rounded">
-          G
+          {company?.charAt(0) || "G"}
         </div>
 
         <div className="flex flex-col">
@@ -33,7 +34,10 @@ export const JobCardCompressed = ({ title, company, timeAgo }) => {
       </div>
 
       {/* Right section: actions + time */}
-      <div className="flex items-center gap-3">
+      <div
+        className="flex items-center gap-3"
+        onClick={(e) => e.stopPropagation()}
+      >
         <button
           aria-label="Guardar trabajo"
           className="w-8 h-8 rounded-md flex items-center justify-center border border-transparent hover:bg-gray-100 transition"
@@ -42,6 +46,7 @@ export const JobCardCompressed = ({ title, company, timeAgo }) => {
         </button>
 
         <button
+          onClick={onClick}
           className="text-sm px-4 py-1.5 rounded-md border border-transparent hover:bg-gray-100 transition"
         >
           Ver más
