@@ -11,6 +11,10 @@
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.75.0",
+<<<<<<< HEAD
+=======
+    "@tailwindcss/vite": "^4.1.16",
+>>>>>>> origin/main
     "firebase": "^12.3.0",
     "lucide-react": "^0.546.0",
     "react": "^19.1.1",

@@ -6,6 +6,8 @@ import Curriculum from './../pages/Curriculum/Curriculum';
 import Register from '../pages/Register/Register';
 import SignIn from '../pages/SignIn/SignIn';
 import Formulary from '../pages/Formulary/Formulary';
+import Vacantes from '../pages/Vacantes/Vacantes';
+
 
 const Router = () => {
     return (
@@ -18,6 +20,7 @@ const Router = () => {
                 <Route path="/register" element={<Register/>}/>
                 <Route path="/sign_in" element={<SignIn/>}/>
                 <Route path="/Formulary" element={<Formulary/>}></Route>
+                <Route path="/vacantes" element={<Vacantes/>}/>
             </Routes>
         </BrowserRouter>
     )

@@ -56,7 +56,7 @@ const ChatWidget = () => {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           chatId,
-          id: 123,
+          id: 84,
           message: msgText,
           route: ChatWidgetConfig.webhook.route,
         }),
@@ -94,7 +94,7 @@ const ChatWidget = () => {
       )}
 
       {isOpen && (
-        <div className="flex flex-col w-[360px] h-[520px] rounded-xl shadow-[0_2px_10px_rgba(0,0,0,0.08)] overflow-hidden border border-[var(--color-neutral)]">
+        <div className="flex flex-col w-[360px] h-[520px] rounded-xl shadow-[0_2px_10px_rgba(0,0,0,0.08)] overflow-hidden border border-[var(--color-neutral)] bg-[var(--color-fullwhite)]">
           <div className="flex items-center justify-between p-3 bg-[var(--color-violet_blue)] text-[var(--color-fondo_blanco)] font-outfit text-lg">
             Asistente Virtual
             <button
