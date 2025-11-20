@@ -8,6 +8,11 @@ import ProfileSummary from "../../components/ProfileSummary/ProfileSummary";
 import JobInfo from "../../components/JobInfo/JobInfo";
 import JobDetailPanel from "../../components/JobDetailPanel/JobDetailPanel";
 import WelcomeBanner from "../../components/WelcomeBanner/WelcomeBanner";
+import Sidebar from "../../components/Sidebar/Sidebar";
+import ProfileSummary from "../../components/ProfileSummary/ProfileSummary";
+
+import JobApplicationModal from "../../components/ApplicationModal/ApplicationModal";
+import ApplicationModal from "../../components/ApplicationModal/ApplicationModal";
 
 const Home = () => {
   const [courses, setCourses] = useState([]);
@@ -29,14 +34,16 @@ const Home = () => {
   return (
     <div id="root" className="min-h-screen">
       <Sidebar />
-
+      <ApplicationModal isOpen={false}></ApplicationModal>
       {/* Main column */}
       <main className="flex-1 min-w-0 px-6 py-6 overflow-y-auto">
 
         <WelcomeBanner name="Ana" />
 
       <h1 className=" font-outfit text-[var(--color-texto-titulos_y_destacado)] text-3x1">Recomendaciones de empleo</h1>
-        <div className="flex flex-col items-center gap-4">
+      
+    
+      <div className="flex flex-col items-center gap-4">
           {courses.map((course, index) => (
             <JobCard
               key={index}
@@ -68,6 +75,8 @@ const Home = () => {
           <ProfileSummary />
         )}
       </aside>
+      <ProfileSummary></ProfileSummary>
+      
 
       <ChatWidget />
     </div>
