@@ -21,36 +21,42 @@ const JobCard = ({
       ? `$${Number(salary).toLocaleString()}`
       : salary;
 
-  // Get first letter from title
-  const initial = title ? title.charAt(0).toUpperCase() : "G";
-
   return (
     <article
       onClick={(e) => {
-        // evitar que clics en botones internos propaguen (ej. guardar)
-        const target = e.target;
-        if (target.closest("button")) return;
+        if (e.target.closest("button")) return;
         onClick();
       }}
       className="cursor-pointer flex flex-col w-full max-w-[100%] p-4 
         bg-[var(--color-alice_blue)] rounded-lg font-primary
         shadow-[var(--shadow-sm)] hover:shadow-md transition"
     >
+      {/* TOP: recomendado por IA y match */}
       <header className="flex items-center justify-between mb-3">
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-1">
           {recommended && (
-            <div className="flex items-center gap-1">
+            <>
               <img src={verified} alt="Recomendado por IA" className="w-4 h-4" />
               <span className="text-sm text-[var(--color-success)]">
                 Recomendado por IA
               </span>
-            </div>
+            </>
           )}
         </div>
+
+        {match && (
+          <span className="text-sm font-medium text-green-600">
+            {match}% Match
+          </span>
+        )}
       </header>
 
+      {/* MAIN INFO */}
       <section className="flex items-start gap-3 mb-3">
-        <div className="flex items-center justify-center w-10 h-10 bg-[var(--color-violet_blue)] text-[var(--color-white)] rounded">
+        
+        {/* 🔵 CUADRO CON LA INICIAL */}
+        <div className="flex items-center justify-center w-10 h-10 
+          bg-[var(--color-violet-blue)] text-[var(--color-white)] rounded">
           {company ? company.charAt(0) : "G"}
         </div>
 
@@ -63,7 +69,8 @@ const JobCard = ({
             )}
             <button
               aria-label="Guardar trabajo"
-              className="w-8 h-8 rounded-md flex items-center justify-center border border-transparent hover:bg-gray-100 transition"
+              className="w-8 h-8 rounded-md flex items-center justify-center 
+              border border-transparent hover:bg-gray-100 transition"
             >
               <img src={saveIcon} alt="Guardar" className="w-4 h-4" />
             </button>
@@ -84,22 +91,24 @@ const JobCard = ({
         </div>
       </section>
 
+      {/* DESCRIPTION */}
       {description && (
         <p className="text-sm text-[var(--color-texto_principal)] mb-3">
           {description}
         </p>
       )}
 
-      {tags && tags.length > 0 && (
+      {/* TAGS */}
+      {tags?.length > 0 && (
         <div className="mb-3">
           <TagList tags={tags} />
-        
         </div>
       )}
 
+      {/* FOOTER */}
       {timeAgo && (
         <footer className="text-xs text-[var(--color-texto_secundario)] text-right">
-          <time dateTime="2024-01-01T10:00:00">{timeAgo}</time>
+          {timeAgo}
         </footer>
       )}
     </article>
