@@ -8,7 +8,7 @@ const statusColors = {
   Guardada: "bg-purple-100 text-purple-700",
 };
 
-const VacanciesList = ({ jobs = [] }) => {
+const   VacanciesList = ({ jobs = [] }) => {
   return (
     <div className="w-full mt-6 flex flex-col">
 
