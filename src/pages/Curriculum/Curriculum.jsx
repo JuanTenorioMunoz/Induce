@@ -7,6 +7,7 @@ const Curriculum = () => {
     <>
       <div className='flex flex-row'>
         <Sidebar></Sidebar>
+        
         <ChatAI></ChatAI>
       </div>
     </>

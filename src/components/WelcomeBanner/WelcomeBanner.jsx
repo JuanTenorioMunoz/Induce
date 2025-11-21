@@ -5,7 +5,7 @@ const WelcomeBanner = ({ name = "Ana" }) => {
         className="w-full rounded-xl p-8 shadow-sm"
         style={{ backgroundColor: "var(--color-violet_blue_500)" }}
       >
-        <h1 className="text-white font-outfit text-3xl font-semibold mb-2">
+        <h1 className="text-white font-outfit text-4xl font-semibold mb-2">
           ¡Hola, {name}!
         </h1>
 
