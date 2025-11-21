@@ -1,0 +1,231 @@
+{
+  "name": "Working backup",
+  "nodes": [
+    {
+      "parameters": {
+        "public": true,
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "typeVersion": 1.3,
+      "position": [
+        -1328,
+        1312
+      ],
+      "id": "0e6f2135-25a3-4baa-b60d-9165443c4c11",
+      "name": "When chat message received",
+      "webhookId": "f4c08642-2017-4d9e-b8b5-5939faf9183c"
+    },
+    {
+      "parameters": {
+        "operation": "getAll",
+        "tableId": "users"
+      },
+      "type": "n8n-nodes-base.supabaseTool",
+      "typeVersion": 1,
+      "position": [
+        -608,
+        1584
+      ],
+      "id": "b44269ed-5a27-4c33-bb5e-c149ce6c5526",
+      "name": "Get many rows in users",
+      "credentials": {
+        "supabaseApi": {
+          "id": "Vixi9OXHGDPDaAKh",
+          "name": "Supabase account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "tableId": "users",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "id",
+              "condition": "eq",
+              "keyValue": "={{$json.id}}"
+            }
+          ]
+        },
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "name",
+              "fieldValue": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('fieldValues0_Field_Value', ``, 'string') }}"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.supabaseTool",
+      "typeVersion": 1,
+      "position": [
+        -480,
+        1584
+      ],
+      "id": "1c6907f0-83fc-4657-80c5-72f74f7bdf06",
+      "name": "Update a row in users",
+      "credentials": {
+        "supabaseApi": {
+          "id": "Vixi9OXHGDPDaAKh",
+          "name": "Supabase account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "getAll",
+        "tableId": "courses",
+        "limit": 20,
+        "filterType": "none"
+      },
+      "type": "n8n-nodes-base.supabaseTool",
+      "typeVersion": 1,
+      "position": [
+        -752,
+        1584
+      ],
+      "id": "4cd7a77e-eda1-417f-a692-207a6f3e7bc6",
+      "name": "Get many rows in courses",
+      "credentials": {
+        "supabaseApi": {
+          "id": "Vixi9OXHGDPDaAKh",
+          "name": "Supabase account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{$json.message}}{{$json.id}}",
+        "options": {
+          "systemMessage": "Propósito:\nMantener conversaciones naturales y útiles con el usuario, utilizando la información ya disponible en la base de datos de Supabase (perfil del usuario, cursos, y vacantes activas). Utiliza el nombre del usuario para referirte a el.\nNunca menciones bases de datos, procesos internos ni el nombre “Supabase”. Ya conoces el user id, este se proporciona en el json, en el param id.\n\nInstrucciones:\n- Cada mensaje contiene un id. Este id indica el id de usuario que se encuentra en la tabla users en supabase. Siempre lo tienes que usar para obtener la información del usuario. Ya sabes lo que tienes que saber del usuario gracias a la información vinculada a su id.\n- Ya cuentas con acceso interno al perfil del usuario (tabla `users`) y a las listas de cursos y vacantes (tabla `courses`), las cuales tiene toda la información de start_date, end_date, salario, modalidad, tipo de contrato, compañia, habilidades y demas. Recuerda siempre consultar esa info, nunca digas que no sabes, primero consulta. \n- Usa esa información para ofrecer respuestas personalizadas sin pedir datos que ya existen.\n- Si el perfil del usuario contiene su área profesional, intereses o habilidades, usa esos datos directamente para recomendar cursos u oportunidades laborales que se ajusten a él.\n- Muestra únicamente opciones que estén abiertas o activas.\n- Cuando muestres opcioens de vacantes, es importante que resaltes la ubicación, modalidad, empresa y salario\n- Si faltan datos clave del perfil (por ejemplo, área de especialización o nivel de experiencia), haz UNA sola pregunta breve y contextual para obtenerlos, luego procede con recomendaciones.\n- Cuando el usuario pida “opciones”, “oportunidades laborales” o “cursos”, responde directamente con los resultados más relevantes.\n- Presenta las recomendaciones de forma natural y profesional, sin lenguaje técnico ni referencias a sistemas.\n- Nunca menciones que estás “buscando”, “consultando” o “recuperando información”.\n\nFormato recomendado de respuesta:\n1. **[Título de la oportunidad o curso]** — breve descripción del enfoque o beneficio principal.\n2. **[Título 2]** — breve descripción.\n3. **[Título 3]** — breve descripción.\nTermina con una pregunta de seguimiento natural, por ejemplo:\n“¿Quieres que te muestre más opciones similares?” o “¿Deseas que filtre por modalidad online?”\n\nTono:\n- Profesional, cercano y positivo.\n- Evita repeticiones y respuestas genéricas.\n- Usa el contexto del usuario para sonar como si ya lo conocieras.\n\nEjemplo de buena respuesta:\nUsuario: “Soy especialista en marketing digital”\nRespuesta:\n“Perfecto. Con base en tu perfil, hay algunas opciones que podrían interesarte:\n1. **Estratega de Campañas Digitales** — Vacante activa en empresa de tecnología.\n2. **Curso de Analítica Web Avanzada** — Ideal para optimizar campañas de rendimiento.\n3. **Gestión de CRM y Automatización** — Programa enfocado en automatizar procesos de marketing.\n¿Te gustaría que te muestre más oportunidades en modalidad remota?”\n\nEjemplo de mala respuesta:\n“He consultado la base de datos para encontrar tus cursos.” \n(Nunca digas esto)\n\nEmpleando la herramienta: Update a row in users, puedes cambiar información del usuario en caso de que este lo pida\n",
+          "passthroughBinaryImages": true
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.7,
+      "position": [
+        -928,
+        1312
+      ],
+      "id": "f4acba14-1990-4611-a9ae-e16c57510476",
+      "name": "AI Agent1"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        -1136,
+        1488
+      ],
+      "id": "64d141eb-e9ba-4022-9fc8-62a5532ca019",
+      "name": "Google Gemini Chat Model1",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "FdJrlXPTfLIbSmse",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sessionIdType": "customKey",
+        "sessionKey": "=={{ $json.id }}",
+        "contextWindowLength": 10
+      },
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.3,
+      "position": [
+        -912,
+        1520
+      ],
+      "id": "f7720241-5711-4e9d-a77a-ca95483b16c8",
+      "name": "Simple Memory"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "When chat message received": {
+      "main": [
+        [
+          {
+            "node": "AI Agent1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get many rows in users": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent1",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Update a row in users": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent1",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get many rows in courses": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent1",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model1": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent1",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Simple Memory": {
+      "ai_memory": [
+        [
+          {
+            "node": "AI Agent1",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "1f7c312c-3735-4f7d-a633-be8096fcf40e",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "f432fee54c9f88f71601a94bc0d3b393003f9ae63a0ebe364fa7465b577d5c1c"
+  },
+  "id": "4JIkSVhl6p4qDfTU",
+  "tags": []
+}
