@@ -8,6 +8,7 @@ import SignIn from '../pages/SignIn/SignIn';
 import Formulary from '../pages/Formulary/Formulary';
 import Vacantes from '../pages/Vacantes/Vacantes';
 import Configuracion from '../pages/Config/Config';
+import Membership from '../pages/Membership/Membership';
 
 const Router = () => {
     return (
@@ -22,6 +23,7 @@ const Router = () => {
                 <Route path="/Formulary" element={<Formulary/>}></Route>
                 <Route path="/vacantes" element={<Vacantes/>}/>
                 <Route path="/configuracion" element={<Configuracion/>}/>
+                <Route path="/configuracion/membership" element={<Membership/>}/>
                 
             </Routes>
         </BrowserRouter>

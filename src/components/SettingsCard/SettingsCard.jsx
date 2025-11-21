@@ -20,4 +20,4 @@ return (
 };
 
 
-export default Configuracion;
+export default SettingsCard;
