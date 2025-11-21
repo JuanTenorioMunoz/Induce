@@ -1,28 +1,33 @@
+import { useEffect, useState } from "react";
 import Sidebar from "../../components/Sidebar/Sidebar";
 import NavBar from "../../components/Navbar/NavBar";
-import SettingsCard from "../../components/SettingsCard/SettingsCard";
-import ChatWidget from "../../components/ChatAI/ChatWidget";
 import { useNavigate } from "react-router-dom";
-
+import { getUserProfileInfo } from "../../utils/supabaseUtils";
 
 const Configuracion = () => {
   const navigate = useNavigate();
+  const [user, setUser] = useState(null);
 
-  const userMock = {
-    name: "Ana María Muñoz",
-    role: "Diseñadora UX/UI",
-    avatar: "https://i.imgur.com/2yaf2wb.jpeg",
+  useEffect(() => {
+  const fetchUser = async () => {
+    try {
+      const data = await getUserProfileInfo(); 
+      console.log("Fetched user profile:", data); 
+      setUser(data);
+    } catch (err) {
+      console.error("Error fetching user:", err);
+    }
   };
-
+  fetchUser();
+}, []);
   return (
     <div id="root" className="flex min-h-screen bg-[#F9F9F9]">
       <Sidebar />
 
       <div className="flex-1 flex flex-col">
-        <NavBar title="Configuración" user={userMock} />
+        <NavBar title="Configuración" user={user} />
 
         <main className="px-10 py-8">
-
           <h1 className="font-outfit text-3xl font-bold text-[var(--color-violet_blue)]">
             Configuración
           </h1>
@@ -33,10 +38,8 @@ const Configuracion = () => {
           <h2 className="text-xl font-bold mb-6">Configuraciones</h2>
 
           <div className="grid grid-cols-2 gap-8">
-
             {/* COLUMNA IZQUIERDA */}
             <div className="flex flex-col gap-6">
-
               <div className="bg-white p-6 rounded-xl shadow-sm">
                 <h3 className="font-bold text-lg mb-2">Visualización</h3>
                 <p>Modo oscuro</p>
@@ -49,12 +52,8 @@ const Configuracion = () => {
 
               <div className="bg-white p-6 rounded-xl shadow-sm">
                 <h3 className="font-bold text-lg mb-4">Notificaciones</h3>
-                <p className="border-b pb-2 mb-2">
-                  Notificaciones push
-                </p>
-                <p>
-                  Notificaciones por correo electrónico
-                </p>
+                <p className="border-b pb-2 mb-2">Notificaciones push</p>
+                <p>Notificaciones por correo electrónico</p>
               </div>
 
               <div className="bg-white p-6 rounded-xl shadow-sm">
@@ -74,7 +73,6 @@ const Configuracion = () => {
 
             {/* COLUMNA DERECHA */}
             <div className="flex flex-col gap-6">
-
               <div className="bg-white p-6 rounded-xl shadow-sm">
                 <h3 className="font-bold text-lg mb-4">Preferencias generales</h3>
 
@@ -114,7 +112,7 @@ const Configuracion = () => {
                   "Cambiar contraseña",
                   "Llaves de acceso",
                   "Dónde tienes activa tu sesión",
-                  "Autenticación doble"
+                  "Autenticación doble",
                 ].map((item) => (
                   <button
                     key={item}
@@ -125,9 +123,7 @@ const Configuracion = () => {
                   </button>
                 ))}
               </div>
-
             </div>
-
           </div>
         </main>
       </div>

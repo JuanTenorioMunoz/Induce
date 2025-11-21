@@ -1,11 +1,13 @@
 import { supabase } from "../services/supabase";
 
-export const getUserProfile = async () => {
+export const getUserProfileInfo = async () => {
   try {
-    const storedUser = sessionStorage.getItem("user");
+    const storedUser = localStorage.getItem("user");
+    console.log("Stored user from localStorage:", storedUser);
     if (!storedUser) return null;
 
     const parsedUser = JSON.parse(storedUser);
+    console.log("Parsed user object:", parsedUser);
 
     const { data: profile, error } = await supabase
       .from("users")
@@ -13,14 +15,24 @@ export const getUserProfile = async () => {
       .eq("auth_id", parsedUser.id)
       .maybeSingle();
 
-    if (error) throw error;
+    if (error) {
+      console.error("Error querying users table:", error);
+      throw error;
+    }
 
-    return profile || parsedUser;
+    console.log("Fetched profile from Supabase:", profile);
+
+    const finalUser = profile || parsedUser;
+    finalUser.name = finalUser.name || parsedUser.name || "";
+    finalUser.surname = finalUser.surname || parsedUser.surname || "";
+
+    return finalUser;
   } catch (err) {
     console.error("Error fetching user profile:", err);
     return null;
   }
 };
+
 
 export const signUpUser = async (email, password) => {
   const e = (email || "").trim();
