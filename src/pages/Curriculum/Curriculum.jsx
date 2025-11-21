@@ -5,7 +5,7 @@ const Curriculum = () => {
   
   return (
     <>
-      <div className='flex flex-row'>
+      <div className='flex flex-row gap-3'>
         <Sidebar></Sidebar>
         
         <ChatAI></ChatAI>
