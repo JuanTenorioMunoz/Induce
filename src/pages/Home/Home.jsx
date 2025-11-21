@@ -8,7 +8,7 @@ import ProfileSummary from "../../components/ProfileSummary/ProfileSummary";
 import JobInfo from "../../components/JobInfo/JobInfo";
 import JobDetailPanel from "../../components/JobDetailPanel/JobDetailPanel";
 import WelcomeBanner from "../../components/WelcomeBanner/WelcomeBanner";
-import Navbar from "../../components/Navbar/NavBar";
+import NavBar from "../../components/Navbar/Navbar";
 import JobCardCompressed from "../../components/JobCard/JobCardCompressed";
 import EmptyJobPanel from "../../components/EmptyJobPanel/EmptyJobPanel";
 
@@ -20,7 +20,7 @@ const Home = () => {
   const userMock = {
     name: "Ana María Muñoz",
     role: "Diseñadora UX/UI",
-    avatar: "https://i.imgur.com/2yaf2wb.jpeg"
+    avatar: "https://i.pinimg.com/1200x/f8/93/c7/f893c7e1abe5b076eaee7c58223329e5.jpg"
   };
 
   const [courses, setCourses] = useState([]);
@@ -60,7 +60,7 @@ const Home = () => {
       <div className="flex flex-col flex-1 min-h-screen">
 
         {/* NAVBAR */}
-        <Navbar
+        <NavBar
           title={
             view === "dashboard"
               ? "Inicio"

@@ -4,7 +4,7 @@ import SkillList from "./SkillList";
 import JobStats from "./JobStats";
 
 const ProfileSummary = ({
-  user = { name: "Ana María Muñoz", role: "Diseñadora UX/UI", photoUrl: "https://placehold.co/133x133" },
+  user = { name: "Ana María Muñoz", role: "Diseñadora UX/UI", photoUrl: "https://i.pinimg.com/1200x/f8/93/c7/f893c7e1abe5b076eaee7c58223329e5.jpg" },
   cvProgress = 75,
   skills = ["Diseño UX", "Diseño UI", "Figma", "Investigación", "Prototipado"],
   stats = { sent: 12, viewed: 45, alerts: 8 },

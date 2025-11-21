@@ -1,5 +1,5 @@
 import Sidebar from "../../components/Sidebar/Sidebar";
-import NavBar from "../../components/Navbar/NavBar";
+import NavBar from "../../components/Navbar/Navbar";
 
 const Membership = () => {
   const userMock = {

@@ -17,7 +17,7 @@ const StepPersonalInfo = () => {
           name="Ana María Muñoz"
           role="Diseñadora UX/UI"
           location="Cali, Valle del Cauca, Colombia"
-          avatar="https://placehold.co/80x80"
+          avatar="https://i.pinimg.com/1200x/f8/93/c7/f893c7e1abe5b076eaee7c58223329e5.jpg"
         />
 
         {/* Email */}

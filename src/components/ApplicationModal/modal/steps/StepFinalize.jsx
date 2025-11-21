@@ -37,7 +37,7 @@ const StepFinalize = ({ requestFinish = false, onClose = () => {} , initialData 
         {/* Información del candidato (editable) */}
         <div className="flex items-center gap-4">
           <img
-            src={initialData.photoUrl ?? "https://randomuser.me/api/portraits/women/68.jpg"}
+            src={initialData.photoUrl ?? "https://i.pinimg.com/1200x/f8/93/c7/f893c7e1abe5b076eaee7c58223329e5.jpg"}
             alt="Foto de perfil"
             className="w-16 h-16 rounded-full object-cover"
           />

@@ -6,7 +6,7 @@ import { parseJSON } from "../../utils/utils";
 import Sidebar from "../../components/Sidebar/Sidebar";
 import ProfileSummary from "../../components/ProfileSummary/ProfileSummary";
 import JobInfo from "../../components/JobInfo/JobInfo";
-import NavBar from "../../components/Navbar/NavBar";
+import NavBar from "../../components/Navbar/Navbar";
 import VacanciesList from "../../components/VacanciesList/VacanciesList";
 
 const Vacantes = () => {
@@ -14,7 +14,7 @@ const Vacantes = () => {
   const userMock = {
     name: "Ana María Muñoz",
     role: "Diseñadora UX/UI",
-    avatar: "https://i.imgur.com/2yaf2wb.jpeg"
+    avatar: "https://i.pinimg.com/1200x/f8/93/c7/f893c7e1abe5b076eaee7c58223329e5.jpg"
   };
 
   const [jobs, setJobs] = useState([]);
