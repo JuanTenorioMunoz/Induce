@@ -1,9 +1,9 @@
 const WelcomeBanner = ({ name = "Ana" }) => {
   return (
-    <div className="w-full px-0  max-w-[100%] my-4 shadow-[var(--shadow-sm)] rounded-lg" >
+    <div className="w-full px-0  max-w-full my-4 shadow-sm rounded-lg" >
       <div
         className="w-full rounded-xl p-8 shadow-sm"
-        style={{ backgroundColor: "var(--color-violet_blue_500)" }}
+        style={{ backgroundColor: "var(--color-violet-blue-500)" }}
       >
         <h1 className="text-white font-outfit text-4xl font-semibold mb-2">
           ¡Hola, {name}!
