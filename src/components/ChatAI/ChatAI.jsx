@@ -8,7 +8,7 @@ const ChatAI = ({ userId }) => {
   const [messages, setMessages] = useState([
     {
       from: "bot",
-      text: "¡Hola! Soy DUCI, el asistente virtual de Induce. ¿En qué puedo ayudarte hoy?",
+      text: "Hola, soy el asistente virtual de Induce. ¿En qué puedo ayudarte hoy?",
       options: [
         "Ver vacantes recomendadas",
         "Información de mi perfil profesional",
@@ -27,7 +27,6 @@ const ChatAI = ({ userId }) => {
   };
 
   const getChatId = () => {
-    // Use the fetched userId to identify the chat
     return `chat_${userId}`;
   };
 
@@ -46,7 +45,7 @@ const ChatAI = ({ userId }) => {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           chatId,
-          id: userId, // send the fetched user id
+          id: userId, 
           message: msgText,
           route: ChatWidgetConfig.webhook.route,
         }),

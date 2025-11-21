@@ -1,6 +1,5 @@
 import ButtonLink from "../../components/ButtonLink/ButtonLink"
 import InputText from "../../components/Input_text/InputText"
-import NavBar from "../../components/Navbar/NavBar"
 import RectanguleButton from "../../components/Rectangule_button/RectanguleButton"
 import Heading from "../../components/Titule/Titule"
 import RegisterImage from "../../assets/Register-image1.png"
@@ -8,6 +7,7 @@ import RegisterImage from "../../assets/Register-image1.png"
 import { useNavigate } from "react-router-dom"
 import { useState } from "react"
 import { loginUser } from "../../utils/supabaseUtils"
+import Navbar from "../../components/Navbar/NavBar"
 
 const SignIn = () => {
     const navigate = useNavigate()
