@@ -58,7 +58,7 @@ const Membership = () => {
               <h2 className="text-xl mb-4">Miembro</h2>
 
               <div className="text-4xl font-bold mb-6">
-                $800 <span className="text-base font-normal">/ 6 meses</span>
+                $200 <span className="text-base font-normal">/ 6 meses</span>
               </div>
 
               <hr className="mb-6"/>
