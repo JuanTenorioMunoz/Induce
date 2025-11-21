@@ -11,8 +11,8 @@ const InputText = ({ label, IconLeft, IconRight, Placeholder, onChange, value })
         type="text"
         placeholder={Placeholder}
         className="flex-1 bg-transparent text-xs px-2 outline-none text-(--color-texto-secundario)"
-        onChange={onChange}
-        value={value ?? ""}
+        onChange={onChange || undefined}
+        value={value !== undefined ? value : undefined}
         />
 
         <i className={`bi bi-${IconRight} text-(--color-texto-secundario)`} />

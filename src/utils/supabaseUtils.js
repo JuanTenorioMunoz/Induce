@@ -2,8 +2,14 @@ import { supabase } from "../services/supabase";
 
 
 export const signUpUser = async (email, password) => {
-  const { data, error } = await supabase.auth.signUp({ email, password });
-  if (error) throw error;
+  const e = (email || "").trim();
+  const p = (password || "").trim();
+  if (!e || !p) throw new Error("Correo y contraseña son obligatorios");
+  const { data, error } = await supabase.auth.signUp({ email: e, password: p });
+  if (error) {
+    const msg = String(error.message || "Error al registrarse");
+    throw new Error(msg);
+  }
 
   if (data.session) localStorage.setItem("session", JSON.stringify(data.session));
   if (data.user) localStorage.setItem("user", JSON.stringify(data.user));
@@ -12,11 +18,14 @@ export const signUpUser = async (email, password) => {
 };
 
 export const loginUser = async (email, password) => {
-  const { data, error } = await supabase.auth.signInWithPassword({
-    email,
-    password,
-  });
-  if (error) throw error;
+  const e = (email || "").trim();
+  const p = (password || "").trim();
+  if (!e || !p) throw new Error("Correo y contraseña son obligatorios");
+  const { data, error } = await supabase.auth.signInWithPassword({ email: e, password: p });
+  if (error) {
+    const msg = String(error.message || "Error al iniciar sesión");
+    throw new Error(msg);
+  }
 
   if (data.session) localStorage.setItem("session", JSON.stringify(data.session));
   if (data.user) localStorage.setItem("user", JSON.stringify(data.user));
@@ -65,4 +74,39 @@ export const fetchAllFromTable = async (tableName) => {
 
   console.log(data)
   return data;
+};
+
+export const requestPasswordReset = async (email) => {
+  if (!email) throw new Error("Correo requerido");
+  const redirectTo = typeof window !== "undefined" ? `${window.location.origin}/sign_in` : undefined;
+  const { data, error } = await supabase.auth.resetPasswordForEmail(email, { redirectTo });
+  if (error) throw error;
+  return data;
+};
+
+export const updateCurrentUserProfile = async (updates = {}) => {
+  const { data: sessionData, error: sessionError } = await supabase.auth.getSession();
+  if (sessionError) throw sessionError;
+  const uid = sessionData?.session?.user?.id;
+  if (!uid) throw new Error("Sin sesión");
+  const { data, error } = await supabase
+    .from("users")
+    .update(updates)
+    .eq("auth_id", uid)
+    .select("*")
+    .maybeSingle();
+  if (error) throw error;
+  if (data) return data;
+  const payload = {
+    auth_id: uid,
+    email: sessionData.session.user.email,
+    ...updates,
+  };
+  const inserted = await supabase
+    .from("users")
+    .insert(payload)
+    .select("*")
+    .maybeSingle();
+  if (inserted.error) throw inserted.error;
+  return inserted.data;
 };
