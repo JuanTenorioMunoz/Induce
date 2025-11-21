@@ -1,5 +1,5 @@
 
-import SendIcon from "../../assets/Send.svg"; 
+import SendIcon from "../../assets/send.svg"; 
 
 const ChatSendButton = ({ disabled, onClick }) => {
   return (
