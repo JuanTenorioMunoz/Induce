@@ -19,10 +19,13 @@ const Curriculum = () => {
   if (!userId) return <div>Cargando usuario...</div>;
 
   return (
-    <div className='flex flex-row'>
-      <Sidebar />
-      <ChatAI userId={userId} />
-    </div>
+    <>
+      <div className='flex flex-row gap-3'>
+        <Sidebar></Sidebar>
+        
+        <ChatAI></ChatAI>
+      </div>
+    </>
   );
 };
 

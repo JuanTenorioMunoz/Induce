@@ -32,12 +32,12 @@ body {
   --color-chartreuse: #D9F103;
   --color-dark-sky-blue: #88bbd8;
   --color-white: #F9FAFB;
-  --color-alice_blue: #FAFBFF;
-  --color-violet_blue_100: #F5F6FF;
-  --color-violet_blue_200: #D6D9FF;
-  --color-violet_blue_300: #ADB2F5;
-  --color-violet_blue_400: #848AE2;
-  --color-violet_blue_500: #6670E5;
+  --color-alice-blue: #FAFBFF;
+  --color-violet-blue-100: #F5F6FF;
+  --color-violet-blue-200: #D6D9FF;
+  --color-violet-blue-300: #ADB2F5;
+  --color-violet-blue-400: #848AE2;
+  --color-violet-blue-500: #6670E5;
   --color-fullwhite: #ffffff;
   
   /* Colores de texto */
@@ -226,6 +226,8 @@ main, aside {
   margin-left: auto;
   margin-top: 2rem;
   margin-right: 2rem;
+  overflow-y: auto;
+  height: auto;
 }
 
 .profile-summary > * {
@@ -236,7 +238,7 @@ main, aside {
 
 /* --- Card principal --- */
 .profile-card {
-  background: var(--color-alice_blue);
+  background: var(--color-alice-blue);
   border-radius: 14px;
   box-shadow: 0px 1px 2px rgba(16, 24, 40, 0.2);
   padding: 2rem 1.5rem;

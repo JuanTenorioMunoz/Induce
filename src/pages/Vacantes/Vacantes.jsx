@@ -69,7 +69,7 @@ const Vacantes = () => {
           {/* BANNER MORADO */}
           <div
             className="
-              bg-[var(--color-violet_blue_500)]
+              bg-(--color-violet-blue-500)
               rounded-xl p-8 text-white mb-10
               shadow-lg 
               
@@ -86,7 +86,7 @@ const Vacantes = () => {
 
             <button
               className="
-                bg-[var(--color-buttons-primarygreen-default)] text-black
+                bg-(--color-buttons-primarygreen-default) text-black
                 px-5 py-2 rounded-md
                 font-medium
               "

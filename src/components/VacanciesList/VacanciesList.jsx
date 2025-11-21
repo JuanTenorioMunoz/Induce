@@ -1,4 +1,3 @@
-import React from "react";
 
 const statusColors = {
   Aceptada: "bg-green-100 text-green-700",
@@ -20,7 +19,7 @@ const   VacanciesList = ({ jobs = [] }) => {
             placeholder="Buscar aquí..."
             className="
               w-full py-3 px-12 rounded-xl
-              border border-[var(--color-violet_blue)]
+              border border-(--color-violet_blue)
               outline-none
             "
           />
@@ -32,7 +31,7 @@ const   VacanciesList = ({ jobs = [] }) => {
         <select
           className="
             ml-6 px-5 py-3 rounded-xl
-            border border-[var(--color-violet_blue)]
+            border border-(--color-violet_blue)
             outline-none
           "
         >
@@ -58,9 +57,10 @@ const   VacanciesList = ({ jobs = [] }) => {
       <div
         className="
           flex flex-col gap-6
-          max-h-[calc(100vh-320px)]
+          max-h-[calc(100vh-450px)]
           overflow-y-auto
           pr-2
+          pb-6
         "
       >
         {jobs.map((job, index) => {
