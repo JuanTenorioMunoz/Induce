@@ -82,13 +82,10 @@ const ChatAI = () => {
   const lastMsg = messages[messages.length - 1];
 
   return (
-    <div className="flex flex-col min-h-screen bg-[var(--color-fondo_blanco)] font-primary text-[var(--color-text)] p-4">
-      <div className="mb-4 text-[var(--color-violet_blue)] font-outfit text-xl sm:text-lg">
-        Creador de CV con IA
-      </div>
+    <div className="flex flex-col min-h-screen bg-(--color-fondo-blanco) font-primary text-(--color-text) p-4">
+      <p className="font-bold text-2xl text-(--color-violet-blue) my-5">Mi Currículum</p>
 
-      <div className="flex flex-col w-full max-w-[740px] h-[80vh] sm:h-[750px] bg-[var(--color-fondo_blanco)] rounded-[14px] border-t border-[#0000001a] overflow-hidden shadow-md">
-        
+      <div className="flex flex-col w-full max-w-[740px] h-[80vh] sm:h-[750px] bg-(--color-fondo_blanco) rounded-[14px] border-t border-[#0000001a] overflow-hidden shadow-md">
         <div
           ref={chatBodyRef}
           className="flex-1 px-4 py-3 overflow-y-auto flex flex-col gap-3 justify-end scroll-smooth"
@@ -110,7 +107,7 @@ const ChatAI = () => {
           )}
         </div>
 
-        <section className="flex items-center gap-3 p-3 border-t border-[#0000001a] bg-[var(--color-fondo_blanco)]">
+        <section className="flex items-center gap-3 p-3 border-t border-[#0000001a] bg-(--color-fondo_blanco)">
           <div className="flex-1">
             <ChatTextInput
               value={input}
