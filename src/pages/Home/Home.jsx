@@ -173,7 +173,7 @@ const Home = () => {
                     placeholder="Search here"
                     className="
                       w-full p-3 mb-4 rounded-lg 
-                      border border-[var(--color-violet_blue)]
+                      border border-(--color-violet-blue)
                       outline-none
                     "
                   />
@@ -253,7 +253,7 @@ const Home = () => {
           </main>
 
           {/* PANEL DERECHO */}
-          <aside className="w-[30vw] min-w-[280px] border-l border-gray-200 bg-white">
+          <aside className="w-[30vw] min-w-[280px] h-auto border-l border-gray-200 bg-white">
 
             {/* SI HAY UN JOB SELECCIONADO */}
             {selectedJob && (
