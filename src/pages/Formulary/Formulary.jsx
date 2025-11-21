@@ -5,6 +5,8 @@ import ButtonPrimary from "../../components/ButtonPrimary/ButtonPrimary";
 import Input_file_image from "../../assets/Input_file_image.png"
 
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { updateCurrentUserProfile } from "../../utils/supabaseUtils";
 
 const Formulary = () => {
   const stepsData = [
@@ -79,9 +81,10 @@ const Formulary = () => {
       description: "",
       fields: [
         {
-          name: "Profesión",
+          name: "Imagen",
           label: "Elige un archivo o arrastralo aquí",
           type: "file",
+          required: false,
           supportText: "Formatos soportados: JPG, PNG, WEBP (máx 1MB)",
         },
       ],
@@ -92,15 +95,22 @@ const Formulary = () => {
   const [formData, setFormData] = useState({});
   const step = stepsData[currentStep];
   const [touched, setTouched] = useState({});
+  const [saving, setSaving] = useState(false);
+  const [error, setError] = useState("");
+  const navigate = useNavigate();
   const handleChange = (name, value) => {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const canContinue = stepsData[currentStep].fields.every(
-    (field) => formData[field.name]?.trim()?.length > 0
-  );
+  const canContinue = stepsData[currentStep].fields.every((field) => {
+    const val = formData[field.name];
+    const required = field.required !== false;
+    if (!required) return true;
+    if (field.type === "file") return !!val;
+    return typeof val === "string" && val.trim().length > 0;
+  });
 
-  const handleNext = () => {
+  const handleNext = async () => {
     if (!canContinue) {
       const newTouched = {};
       step.fields.forEach((f) => {
@@ -110,6 +120,34 @@ const Formulary = () => {
       return;
     }
     setTouched({});
+    if (currentStep === stepsData.length - 1) {
+      try {
+        setSaving(true);
+        setError("");
+        const bg = {
+          pais: formData["País"] || null,
+          departamento: formData["Departamento"] || null,
+          profesion: formData["Profesión"] || null,
+          cargo_reciente: formData["Cargo más reciente"] || null,
+          nivel_experiencia: formData["Nivel de experiencia"] || null,
+        };
+        const updates = {
+          name: formData["Nombre"] || null,
+          surname: formData["Apellidos"] || null,
+          city: formData["Ciudad"] || null,
+          background: bg,
+          
+          
+        };
+        await updateCurrentUserProfile(updates);
+        navigate("/profile");
+      } catch (e) {
+        setError(e.message || "No se pudo guardar");
+      } finally {
+        setSaving(false);
+      }
+      return;
+    }
     setCurrentStep((prev) => prev + 1);
   };
 
@@ -134,7 +172,9 @@ const Formulary = () => {
             {step.fields.map((field) => {
               const value = formData[field.name] || "";
               const isFile = field.type === "file";
+              const required = field.required !== false;
               const showError =
+                required &&
                 touched[field.name] &&
                 ((isFile && !value) || (!isFile && value.trim().length === 0));
 
@@ -203,10 +243,16 @@ const Formulary = () => {
 
             <ButtonPrimary
               text={
-                currentStep === stepsData.length - 1 ? "Finalizar" : "Continuar"
+                saving
+                  ? "Guardando..."
+                  : currentStep === stepsData.length - 1
+                  ? "Finalizar"
+                  : "Continuar"
               }
+              disabled={saving}
               onClick={handleNext}
             />
+            {error && <span className="text-red-500 text-xs mt-2">{error}</span>}
           </div>
         </div>
       </div>
