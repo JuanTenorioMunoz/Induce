@@ -4,7 +4,7 @@ import ChatOption from "./ChatOption";
 import ChatTextInput from "./ChatTextInput";
 import ChatSendButton from "./ChatSendButton";
 
-const ChatAI = () => {
+const ChatAI = ({ userId }) => {
   const [messages, setMessages] = useState([
     {
       from: "bot",
@@ -26,35 +26,27 @@ const ChatAI = () => {
     },
   };
 
-  useEffect(() => {
-    if (chatBodyRef.current) {
-      chatBodyRef.current.scrollTop = chatBodyRef.current.scrollHeight;
-    }
-  }, [messages]);
-
   const getChatId = () => {
-    let chatId = sessionStorage.getItem("chatId");
-    if (!chatId) {
-      chatId = "chat_" + Math.random().toString(36).substr(2, 9);
-      sessionStorage.setItem("chatId", chatId);
-    }
-    return chatId;
+    // Use the fetched userId to identify the chat
+    return `chat_${userId}`;
   };
 
   const sendMessage = async (msgText) => {
     if (!msgText.trim()) return;
+
     const userMessage = { from: "user", text: msgText };
     setMessages((prev) => [...prev, userMessage]);
     setInput("");
 
     try {
       const chatId = getChatId();
+
       const res = await fetch(ChatWidgetConfig.webhook.url, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           chatId,
-          id: 24,
+          id: userId, // send the fetched user id
           message: msgText,
           route: ChatWidgetConfig.webhook.route,
         }),
@@ -62,23 +54,24 @@ const ChatAI = () => {
 
       const data = await res.json();
       const botText = data.output || "No entendí eso, ¿puedes repetirlo?";
+
       setMessages((prev) => [...prev, { from: "bot", text: botText }]);
     } catch (err) {
       console.error("Error:", err);
       setMessages((prev) => [
         ...prev,
-        {
-          from: "bot",
-          text: "Error de conexión. Intenta de nuevo más tarde.",
-        },
+        { from: "bot", text: "Error de conexión. Intenta de nuevo más tarde." },
       ]);
     }
   };
 
-  const handleOptionClick = (option) => {
-    sendMessage(option);
-  };
+  useEffect(() => {
+    if (chatBodyRef.current) {
+      chatBodyRef.current.scrollTop = chatBodyRef.current.scrollHeight;
+    }
+  }, [messages]);
 
+  const handleOptionClick = (option) => sendMessage(option);
   const lastMsg = messages[messages.length - 1];
 
   return (
