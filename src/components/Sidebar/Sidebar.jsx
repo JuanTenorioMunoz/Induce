@@ -15,7 +15,7 @@ const Sidebar = () => {
                 <ButtonSidebar icon="person-fill" name="Mi perfil" to="/profile"></ButtonSidebar>
                 <ButtonSidebar icon="briefcase-fill" name="Mis vacantes" to="/vacantes"></ButtonSidebar>
                 <ButtonSidebar icon="file-earmark-text-fill" name="Mi currículum" to="/cv"></ButtonSidebar>
-                <ButtonSidebar icon="gear-fill" name="Configuración" to="/#"></ButtonSidebar>
+                <ButtonSidebar icon="gear-fill" name="Configuración" to="/configuracion"></ButtonSidebar>
             </div>
             
             {/* Botón de cerrar sesión al final */}
