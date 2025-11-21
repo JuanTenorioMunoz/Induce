@@ -110,3 +110,13 @@ export const updateCurrentUserProfile = async (updates = {}) => {
   if (inserted.error) throw inserted.error;
   return inserted.data;
 };
+
+export const getUserFromSession = () => {
+  try {
+    const storedUser = sessionStorage.getItem("user");
+    return storedUser ? JSON.parse(storedUser) : null;
+  } catch (error) {
+    console.error("Error getting user from sessionStorage:", error);
+    return null;
+  }
+};
