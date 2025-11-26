@@ -8,7 +8,7 @@ const ChatAI = ({ userId }) => {
   const [messages, setMessages] = useState([
     {
       from: "bot",
-      text: "¡Hola! Soy DUCI, el asistente virtual de Induce. ¿En qué puedo ayudarte hoy?",
+      text: "Hola, soy el asistente virtual de Induce. ¿En qué puedo ayudarte hoy?",
       options: [
         "Ver vacantes recomendadas",
         "Información de mi perfil profesional",
@@ -21,13 +21,12 @@ const ChatAI = ({ userId }) => {
 
   const ChatWidgetConfig = {
     webhook: {
-      url: "http://localhost:3005/webhook/f4c08642-2017-4d9e-b8b5-5939faf9183c/chat",
+      url: "https://n8ntest432.app.n8n.cloud/webhook/f4c08642-2017-4d9e-b8b5-5939faf9183c/chat",
       route: "general",
     },
   };
 
   const getChatId = () => {
-    // Use the fetched userId to identify the chat
     return `chat_${userId}`;
   };
 
@@ -46,7 +45,7 @@ const ChatAI = ({ userId }) => {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           chatId,
-          id: userId, // send the fetched user id
+          id: 15, 
           message: msgText,
           route: ChatWidgetConfig.webhook.route,
         }),
